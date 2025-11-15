@@ -1,6 +1,8 @@
 package com.login;
 
+
 import java.awt.Color;
+import com.Interfaz.FramePV;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -12,12 +14,16 @@ import java.awt.Color;
  * @author manugr
  */
 public class Panelog extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form Panelog
      */
     public Panelog() {
+        
         initComponents();
+       
+        
+    
     }
 
     /**
@@ -43,6 +49,7 @@ public class Panelog extends javax.swing.JPanel {
         pswFiel = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1050, 620));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PanelAlog.setBackground(new java.awt.Color(0, 102, 255));
@@ -131,6 +138,9 @@ public class Panelog extends javax.swing.JPanel {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 lblinisiarMouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblinisiarMousePressed(evt);
+            }
         });
         pnlbtninisiar.add(lblinisiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -1, 150, 40));
 
@@ -199,6 +209,22 @@ public class Panelog extends javax.swing.JPanel {
     private void pswFielActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pswFielActionPerformed
         
     }//GEN-LAST:event_pswFielActionPerformed
+
+    private void lblinisiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblinisiarMousePressed
+        String cont="UNSIS";
+        String use="Admin";
+        
+        
+        FramePV frame = (FramePV) javax.swing.SwingUtilities.getWindowAncestor(this);
+
+        
+        if(txtuser.getText().equals(use) && String.valueOf(pswFiel.getPassword()).equals(cont)){
+            
+            frame.MostrarM();
+            
+        }
+        
+    }//GEN-LAST:event_lblinisiarMousePressed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

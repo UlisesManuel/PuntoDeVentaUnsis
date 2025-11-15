@@ -2,22 +2,55 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-import com.login.*;
+package com.Interfaz;
+import com.login.Menu;
+import com.login.Panelog;
 /**
  *
  * @author manugr
  */
-public class Interfaz extends javax.swing.JFrame {
+public class FramePV extends javax.swing.JFrame {
+
+   
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interfaz.class.getName());
+
 
     /**
-     * Creates new form Interfaz
-     */
-    public Interfaz() {
+     * Creates new form FramePV
+//     */
+    public FramePV() {
         initComponents();
+        MostrarL();
+       
+       
     }
-
+    public void MostrarM(){
+        
+//        FramePV p=new FramePV();
+//        p.setVisible(true);
+//        Menu m=new Menu();
+//        System.out.println("Entre");
+//        m.setVisible(true);
+        PanelConainer.removeAll();
+        PanelConainer.add(new Menu());
+        PanelConainer.revalidate();
+        PanelConainer.repaint();
+    }
+   
+    public void MostrarL(){
+        Panelog log=new Panelog(); 
+                
+        
+        
+        PanelConainer.removeAll();
+        PanelConainer.add(log);
+        PanelConainer.revalidate();
+        PanelConainer.repaint();
+        
+        
+        PanelConainer.setVisible(true);
+      
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,22 +60,14 @@ public class Interfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PanelContenedor = new javax.swing.JPanel();
+        PanelConainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1016, 622));
 
-        PanelContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        PanelConainer.setMinimumSize(new java.awt.Dimension(1016, 622));
+        PanelConainer.setLayout(new java.awt.CardLayout());
+        getContentPane().add(PanelConainer, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -51,18 +76,14 @@ public class Interfaz extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        Interfaz WindowP= new Interfaz();
-        WindowP.setSize(1050,620);
-        Panelog log=new Panelog(); 
-        log.setVisible(true);
-        WindowP.setContentPane(log);
-        WindowP.revalidate();
+ 
+    
         
-        WindowP.repaint();
         
-        WindowP.setVisible(true);
-
-//        PanelContenedor.add(log);
+        
+        
+        
+        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -75,15 +96,16 @@ public class Interfaz extends javax.swing.JFrame {
                 }
             }
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Interfaz().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new FramePV().setVisible(true));
+        
     }
-
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JPanel PanelContenedor;
+    private javax.swing.JPanel PanelConainer;
     // End of variables declaration//GEN-END:variables
 }
