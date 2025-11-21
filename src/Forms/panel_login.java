@@ -1,8 +1,5 @@
-package com.login;
-
-
+package Forms;
 import java.awt.Color;
-import com.Interfaz.FramePV;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -13,14 +10,15 @@ import com.Interfaz.FramePV;
  *
  * @author manugr
  */
-public class Panelog extends javax.swing.JPanel {
-    
+public class panel_login extends javax.swing.JPanel {
+    private MainP referenciaMainP;
     /**
      * Creates new form Panelog
      */
-    public Panelog() {
+    public panel_login(MainP mainP) {
         
         initComponents();
+        this.referenciaMainP=mainP;
        
         
     
@@ -49,10 +47,11 @@ public class Panelog extends javax.swing.JPanel {
         pswFiel = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1050, 620));
+        setPreferredSize(new java.awt.Dimension(1200, 800));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        PanelAlog.setBackground(new java.awt.Color(0, 102, 255));
+        PanelAlog.setBackground(new java.awt.Color(25, 31, 86));
+        PanelAlog.setPreferredSize(new java.awt.Dimension(514, 800));
 
         lblIconoLog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoPrincipal.png"))); // NOI18N
 
@@ -71,16 +70,16 @@ public class Panelog extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAlogLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblsisname, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                .addGap(76, 76, 76))
         );
         PanelAlogLayout.setVerticalGroup(
             PanelAlogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAlogLayout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(181, Short.MAX_VALUE)
                 .addComponent(lblsisname, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblIconoLog, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120))
+                .addGap(222, 222, 222))
         );
 
         add(PanelAlog, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -89,6 +88,7 @@ public class Panelog extends javax.swing.JPanel {
         txtuser.setForeground(new java.awt.Color(204, 204, 204));
         txtuser.setText("Ingrese el nombre de usuario");
         txtuser.setBorder(null);
+        txtuser.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtuser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtuserMousePressed(evt);
@@ -116,8 +116,8 @@ public class Panelog extends javax.swing.JPanel {
         add(lblpsw, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 330, 120, 30));
         add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 410, 380, -1));
 
-        pnlbtninisiar.setBackground(new java.awt.Color(0, 102, 255));
-        pnlbtninisiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlbtninisiar.setBackground(new java.awt.Color(25, 31, 86));
+        pnlbtninisiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnlbtninisiar.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 pnlbtninisiarFocusGained(evt);
@@ -131,6 +131,7 @@ public class Panelog extends javax.swing.JPanel {
         lblinisiar.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         lblinisiar.setForeground(new java.awt.Color(255, 255, 255));
         lblinisiar.setText("       INICIAR SESION");
+        lblinisiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblinisiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblinisiarMouseEntered(evt);
@@ -166,22 +167,6 @@ public class Panelog extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtuserActionPerformed
 
-    private void pnlbtninisiarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pnlbtninisiarFocusGained
-        
-    }//GEN-LAST:event_pnlbtninisiarFocusGained
-
-    private void pnlbtninisiarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pnlbtninisiarFocusLost
-    
-    }//GEN-LAST:event_pnlbtninisiarFocusLost
-
-    private void lblinisiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblinisiarMouseEntered
-        pnlbtninisiar.setBackground(new Color(0,0,255));
-    }//GEN-LAST:event_lblinisiarMouseEntered
-
-    private void lblinisiarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblinisiarMouseExited
-        pnlbtninisiar.setBackground(new Color(0,102,255));
-    }//GEN-LAST:event_lblinisiarMouseExited
-
     private void txtuserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtuserMousePressed
         if(txtuser.getText().equals("Ingrese el nombre de usuario")){
         txtuser.setText("");
@@ -210,21 +195,34 @@ public class Panelog extends javax.swing.JPanel {
         
     }//GEN-LAST:event_pswFielActionPerformed
 
+    private void pnlbtninisiarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pnlbtninisiarFocusLost
+
+    }//GEN-LAST:event_pnlbtninisiarFocusLost
+
+    private void pnlbtninisiarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pnlbtninisiarFocusGained
+
+    }//GEN-LAST:event_pnlbtninisiarFocusGained
+
     private void lblinisiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblinisiarMousePressed
         String cont="UNSIS";
         String use="Admin";
-        
-        
-        FramePV frame = (FramePV) javax.swing.SwingUtilities.getWindowAncestor(this);
 
-        
         if(txtuser.getText().equals(use) && String.valueOf(pswFiel.getPassword()).equals(cont)){
-            
-            frame.MostrarM();
-            
+            txtuser.setText("");
+            pswFiel.setText("");
+            // aqui voy al framesito xd, pero no se como.
+            System.out.println("Etrando xd");
+            referenciaMainP.showMainContent();
         }
-        
     }//GEN-LAST:event_lblinisiarMousePressed
+
+    private void lblinisiarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblinisiarMouseExited
+        pnlbtninisiar.setBackground(new Color(25,31,86));
+    }//GEN-LAST:event_lblinisiarMouseExited
+
+    private void lblinisiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblinisiarMouseEntered
+        pnlbtninisiar.setBackground(Color.blue);
+    }//GEN-LAST:event_lblinisiarMouseEntered
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
