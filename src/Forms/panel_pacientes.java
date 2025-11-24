@@ -4,6 +4,8 @@
  */
 package Forms;
 
+import java.awt.Color;
+
 /**
  *
  * @author david
@@ -26,31 +28,238 @@ public class panel_pacientes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TblPacientes = new javax.swing.JTable();
+        txtBusquedaPnlpacientes = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        txtAPEMpnlpas = new javax.swing.JTextField();
+        txtCURPpnlpas = new javax.swing.JTextField();
+        txtAPEPpnlpas = new javax.swing.JTextField();
+        txtNOMpnlpas = new javax.swing.JTextField();
+        txtTELpnlpas = new javax.swing.JTextField();
+        lblCURPpnlpas = new javax.swing.JLabel();
+        lblAPMpnlpas = new javax.swing.JLabel();
+        lblNOMpnlpas = new javax.swing.JLabel();
+        lblAPEPpnlpas = new javax.swing.JLabel();
+        cboxGENpnlpas = new javax.swing.JComboBox<>();
+        lblGENpnlpas = new javax.swing.JLabel();
+        lblTELpnlpas = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
-        jLabel1.setText("pacientes");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1000, 800));
+
+        TblPacientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "CURP", "Nombre", "Apellido Paterno", "Apellido Materno", "Telefono", "Genero", "Title 7"
+            }
+        ));
+        jScrollPane1.setViewportView(TblPacientes);
+
+        jLabel2.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
+        jLabel2.setText("Buscar");
+
+        txtAPEMpnlpas.setEditable(false);
+        txtAPEMpnlpas.setEnabled(false);
+
+        txtCURPpnlpas.setEditable(false);
+        txtCURPpnlpas.setEnabled(false);
+        txtCURPpnlpas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCURPpnlpasActionPerformed(evt);
+            }
+        });
+
+        txtAPEPpnlpas.setEditable(false);
+        txtAPEPpnlpas.setEnabled(false);
+
+        txtNOMpnlpas.setEditable(false);
+        txtNOMpnlpas.setEnabled(false);
+
+        txtTELpnlpas.setEditable(false);
+        txtTELpnlpas.setEnabled(false);
+
+        lblCURPpnlpas.setText("CURP*");
+
+        lblAPMpnlpas.setText("Apellido Materno*");
+
+        lblNOMpnlpas.setText("Nombre(s)*");
+
+        lblAPEPpnlpas.setText("Apellido Paterno*");
+
+        cboxGENpnlpas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "No binarie", "No dispuesta", "Prefiero no responder", " " }));
+        cboxGENpnlpas.setEnabled(false);
+        cboxGENpnlpas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxGENpnlpasActionPerformed(evt);
+            }
+        });
+
+        lblGENpnlpas.setText("Género*");
+
+        lblTELpnlpas.setText("Teléfono*");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/historial-dental.png"))); // NOI18N
+
+        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/boligrafo.png"))); // NOI18N
+        jLabel3.setText("Habilitar Edición");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel3MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel3MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel1)
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 894, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(500, 500, 500)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtBusquedaPnlpacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAPEMpnlpas, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCURPpnlpas, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCURPpnlpas, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblAPMpnlpas))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTELpnlpas)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtTELpnlpas)
+                                .addComponent(txtNOMpnlpas, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblNOMpnlpas))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblGENpnlpas)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtAPEPpnlpas)
+                                .addComponent(cboxGENpnlpas, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblAPEPpnlpas)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel2)
+                        .addGap(1, 1, 1)
+                        .addComponent(txtBusquedaPnlpacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNOMpnlpas)
+                    .addComponent(lblCURPpnlpas)
+                    .addComponent(lblAPEPpnlpas))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCURPpnlpas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNOMpnlpas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAPEPpnlpas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblAPMpnlpas)
+                            .addComponent(lblTELpnlpas))
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtAPEMpnlpas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTELpnlpas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboxGENpnlpas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblGENpnlpas))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtCURPpnlpasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCURPpnlpasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCURPpnlpasActionPerformed
+
+    private void cboxGENpnlpasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxGENpnlpasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboxGENpnlpasActionPerformed
+
+    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
+        jLabel3.setForeground(new Color(25,31,86));
+    }//GEN-LAST:event_jLabel3MouseEntered
+
+    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
+        jLabel3.setForeground(Color.blue);
+    }//GEN-LAST:event_jLabel3MouseExited
+
+    private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed
+        txtAPEMpnlpas.setEnabled(true);
+        txtAPEPpnlpas.setEnabled(true);
+        txtCURPpnlpas.setEnabled(true);
+        txtNOMpnlpas.setEnabled(true);
+        txtTELpnlpas.setEnabled(true);
+        cboxGENpnlpas.setEnabled(true);
+    }//GEN-LAST:event_jLabel3MousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TblPacientes;
+    public javax.swing.JComboBox<String> cboxGENpnlpas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblAPEPpnlpas;
+    private javax.swing.JLabel lblAPMpnlpas;
+    private javax.swing.JLabel lblCURPpnlpas;
+    private javax.swing.JLabel lblGENpnlpas;
+    private javax.swing.JLabel lblNOMpnlpas;
+    private javax.swing.JLabel lblTELpnlpas;
+    public javax.swing.JTextField txtAPEMpnlpas;
+    public javax.swing.JTextField txtAPEPpnlpas;
+    private javax.swing.JTextField txtBusquedaPnlpacientes;
+    public javax.swing.JTextField txtCURPpnlpas;
+    public javax.swing.JTextField txtNOMpnlpas;
+    public javax.swing.JTextField txtTELpnlpas;
     // End of variables declaration//GEN-END:variables
 }

@@ -427,6 +427,7 @@ public JPanel panelGeneral;
 
     private void lbl_log_outMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_log_outMouseClicked
        showLogin();
+       
     }//GEN-LAST:event_lbl_log_outMouseClicked
 
     private void lbl_log_outMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_log_outMouseEntered

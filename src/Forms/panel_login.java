@@ -19,7 +19,7 @@ public class panel_login extends javax.swing.JPanel {
         
         initComponents();
         this.referenciaMainP=mainP;
-       
+       lblerror.setVisible(false);
         
     
     }
@@ -45,6 +45,7 @@ public class panel_login extends javax.swing.JPanel {
         pnlbtninisiar = new javax.swing.JPanel();
         lblinisiar = new javax.swing.JLabel();
         pswFiel = new javax.swing.JPasswordField();
+        lblerror = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1200, 800));
@@ -53,7 +54,7 @@ public class panel_login extends javax.swing.JPanel {
         PanelAlog.setBackground(new java.awt.Color(25, 31, 86));
         PanelAlog.setPreferredSize(new java.awt.Dimension(514, 800));
 
-        lblIconoLog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoPrincipal.png"))); // NOI18N
+        lblIconoLog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/iconoPrincipal.png"))); // NOI18N
 
         lblsisname.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 36)); // NOI18N
         lblsisname.setForeground(new java.awt.Color(255, 255, 255));
@@ -64,22 +65,21 @@ public class panel_login extends javax.swing.JPanel {
         PanelAlogLayout.setHorizontalGroup(
             PanelAlogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelAlogLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(lblIconoLog, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGap(0, 90, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAlogLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblsisname, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addGap(63, 63, 63))
         );
         PanelAlogLayout.setVerticalGroup(
             PanelAlogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAlogLayout.createSequentialGroup()
-                .addContainerGap(181, Short.MAX_VALUE)
+            .addGroup(PanelAlogLayout.createSequentialGroup()
+                .addGap(99, 99, 99)
                 .addComponent(lblsisname, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(59, 59, 59)
                 .addComponent(lblIconoLog, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(222, 222, 222))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
 
         add(PanelAlog, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -88,7 +88,7 @@ public class panel_login extends javax.swing.JPanel {
         txtuser.setForeground(new java.awt.Color(204, 204, 204));
         txtuser.setText("Ingrese el nombre de usuario");
         txtuser.setBorder(null);
-        txtuser.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtuser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtuser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtuserMousePressed(evt);
@@ -161,6 +161,10 @@ public class panel_login extends javax.swing.JPanel {
             }
         });
         add(pswFiel, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 370, 380, 40));
+
+        lblerror.setForeground(new java.awt.Color(255, 51, 51));
+        lblerror.setText("Usuario o contraseña invalidos");
+        add(lblerror, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 280, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtuserActionPerformed
@@ -206,13 +210,16 @@ public class panel_login extends javax.swing.JPanel {
     private void lblinisiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblinisiarMousePressed
         String cont="UNSIS";
         String use="Admin";
-
+        
         if(txtuser.getText().equals(use) && String.valueOf(pswFiel.getPassword()).equals(cont)){
             txtuser.setText("");
             pswFiel.setText("");
             // aqui voy al framesito xd, pero no se como.
             System.out.println("Etrando xd");
             referenciaMainP.showMainContent();
+        }else{
+            System.out.println("Tambien entro");
+            lblerror.setVisible(true);
         }
     }//GEN-LAST:event_lblinisiarMousePressed
 
@@ -221,7 +228,7 @@ public class panel_login extends javax.swing.JPanel {
     }//GEN-LAST:event_lblinisiarMouseExited
 
     private void lblinisiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblinisiarMouseEntered
-        pnlbtninisiar.setBackground(Color.blue);
+        pnlbtninisiar.setBackground(Color.black);
     }//GEN-LAST:event_lblinisiarMouseEntered
     
 
@@ -231,6 +238,7 @@ public class panel_login extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblIconoLog;
+    private javax.swing.JLabel lblerror;
     private javax.swing.JLabel lblinisiar;
     private javax.swing.JLabel lblpsw;
     private javax.swing.JLabel lblsisname;
