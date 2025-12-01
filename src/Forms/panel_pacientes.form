@@ -24,28 +24,42 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Component id="jSeparator1" min="-2" pref="1000" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
+              <Component id="lbllogo_pas" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSeparator1" min="-2" pref="1000" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                      <Component id="btnActualizarPastbl" min="-2" pref="142" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="238" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" min="-2" pref="894" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="500" pref="500" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel2" min="-2" pref="60" max="-2" attributes="0"/>
-                                  <Component id="txtBusquedaPnlpacientes" min="-2" pref="397" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jLabel2" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="txtBusquedaPnlpacientes" min="-2" pref="397" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="848" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Component id="btnEdicionDP" min="-2" pref="150" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="btnDropDato" min="-2" pref="155" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="btnInsertarPas" min="-2" pref="143" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="btnmodificarPas" min="-2" pref="169" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtAPEMpnlpas" alignment="0" min="-2" pref="279" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -54,6 +68,7 @@
                               </Group>
                           </Group>
                           <Component id="lblAPMpnlpas" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtAPEMpnlpas" alignment="0" min="-2" pref="279" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -66,20 +81,11 @@
                       </Group>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblGENpnlpas" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtAPEPpnlpas" max="32767" attributes="0"/>
-                              <Component id="cboxGENpnlpas" min="-2" pref="279" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="txtAPEPpnlpas" min="-2" pref="279" max="-2" attributes="0"/>
                           <Component id="lblAPEPpnlpas" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" pref="150" max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -88,12 +94,15 @@
           <Group type="102" attributes="0">
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" min="-2" pref="86" max="-2" attributes="0"/>
+                  <Component id="lbllogo_pas" min="-2" pref="86" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                      <Component id="txtBusquedaPnlpacientes" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtBusquedaPnlpacientes" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="btnActualizarPastbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="225" max="-2" attributes="0"/>
                   </Group>
@@ -101,7 +110,7 @@
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <Component id="btnEdicionDP" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblNOMpnlpas" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -115,22 +124,22 @@
                   <Component id="txtAPEPpnlpas" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblAPMpnlpas" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblTELpnlpas" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtAPEMpnlpas" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="txtTELpnlpas" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="cboxGENpnlpas" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Component id="lblGENpnlpas" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblAPMpnlpas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTELpnlpas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="188" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtAPEMpnlpas" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="txtTELpnlpas" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="101" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnDropDato" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="btnInsertarPas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnmodificarPas" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -146,14 +155,12 @@
         <Component class="javax.swing.JTable" name="TblPacientes">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="4">
+              <Table columnCount="5" rowCount="4">
                 <Column editable="true" title="CURP" type="java.lang.Object"/>
                 <Column editable="true" title="Nombre" type="java.lang.Object"/>
                 <Column editable="true" title="Apellido Paterno" type="java.lang.Object"/>
                 <Column editable="true" title="Apellido Materno" type="java.lang.Object"/>
                 <Column editable="true" title="Telefono" type="java.lang.Object"/>
-                <Column editable="true" title="Genero" type="java.lang.Object"/>
-                <Column editable="true" title="Title 7" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>
@@ -174,7 +181,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtAPEMpnlpas">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
@@ -183,7 +189,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCURPpnlpas">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -195,7 +200,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtAPEPpnlpas">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
@@ -204,7 +208,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNOMpnlpas">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
@@ -213,7 +216,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtTELpnlpas">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
@@ -240,46 +242,19 @@
         <Property name="text" type="java.lang.String" value="Apellido Paterno*"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cboxGENpnlpas">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="Masculino"/>
-            <StringItem index="1" value="Femenino"/>
-            <StringItem index="2" value="No binarie"/>
-            <StringItem index="3" value="No dispuesta"/>
-            <StringItem index="4" value="Prefiero no responder"/>
-            <StringItem index="5" value=" "/>
-          </StringArray>
-        </Property>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboxGENpnlpasActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblGENpnlpas">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="G&#xe9;nero*"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblTELpnlpas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tel&#xe9;fono*"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lbllogo_pas">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Icon/historial-dental.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="btnEdicionDP">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="0" red="0" type="rgb"/>
@@ -293,9 +268,59 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel3MouseEntered"/>
-        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel3MouseExited"/>
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel3MousePressed"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEdicionDPMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEdicionDPMouseExited"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEdicionDPMousePressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="btnDropDato">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Icon/basura.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Eliminar"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnDropDatoMousePressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="btnInsertarPas">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Icon/0.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Ingresar Paciente"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnInsertarPasMousePressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="btnmodificarPas">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Icon/boligrafo.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Guardar Cambios"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnmodificarPasMousePressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="btnActualizarPastbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Actualizar tabla"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnActualizarPastblMousePressed"/>
       </Events>
     </Component>
   </SubComponents>

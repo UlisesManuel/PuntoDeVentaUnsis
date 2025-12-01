@@ -9,6 +9,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
@@ -42,6 +43,27 @@ public class Logic_Code {
         
     }
     
+     public void limpiarT(JTextField matricula,JTextField tblname,JTextField nom,JTextField ape,JTextField car){
+        matricula.setText("");
+        tblname.setText("");
+        nom.setText("");
+        ape.setText("");
+        car.setText("");
+    }
+    public void deshabilitar(JTextField curp,JTextField nombre,JTextField apellidop,JTextField apellidom,JTextField tel){
+        curp.setEnabled(false);
+        nombre.setEnabled(false);
+        apellidop.setEnabled(false);
+        apellidom.setEnabled(false);
+        tel.setEnabled(false);
+    }
+    public void habilitar(JTextField curp,JTextField nombre,JTextField apellidop,JTextField apellidom,JTextField tel){
+        curp.setEnabled(true);
+        nombre.setEnabled(true);
+        apellidop.setEnabled(true);
+        apellidom.setEnabled(true);
+        tel.setEnabled(true);
+    }
     
     
     public static void resaltarLabel(JLabel labelsito){
