@@ -77,8 +77,9 @@ public JPanel panelGeneral;
         
         setContentPane(panelGeneral);
         
-        showLogin();
         
+        showLogin();
+        //showMainContent();
         
         
         

@@ -37,4 +37,25 @@ public class validaciones {
     public static boolean soloLetras(String texto) {
     return texto.matches("[a-zA-Z\\s]+");
     }
+
+    public boolean campos2(JTextField Nombre,JTextField Apellido,JTextField correo,JTextField matricula){
+        if(correo.getText().isEmpty() || Nombre.getText().isEmpty() || Apellido.getText().isEmpty() || correo.getText().isEmpty() || matricula.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Rellenar todos los campos","Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(correo.getText().length()!=18 & matricula.getText().length()!=9){
+            JOptionPane.showMessageDialog(null, "CURP o Telefono no validos","Error", JOptionPane.ERROR_MESSAGE);
+        return false;
+        }
+        if (!soloLetras(Nombre.getText()) || !soloLetras(Apellido.getText()) || !soloLetras(Apellido.getText())){
+           JOptionPane.showMessageDialog(null, "Valores no validos","Error", JOptionPane.ERROR_MESSAGE);
+           return false; 
+        }
+        if(!soloNumeros(matricula.getText())){
+            JOptionPane.showMessageDialog(null, "El telefono debe ser solo numeros","Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
 }
+

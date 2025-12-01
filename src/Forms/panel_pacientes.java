@@ -13,10 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 
-/**
- *
- * @author david
- */
+
 public class panel_pacientes extends javax.swing.JPanel {
 
     /**

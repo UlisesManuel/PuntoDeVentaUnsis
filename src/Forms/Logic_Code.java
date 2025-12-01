@@ -4,13 +4,19 @@
  */
 package Forms;
 
+import Forms.Cruds;
+import Forms.Pacientes;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -50,6 +56,14 @@ public class Logic_Code {
         ape.setText("");
         car.setText("");
     }
+     
+       public void limpiar2(JTextField matricula,JTextField Nombre,JTextField Apellido,JTextField correo){
+        Nombre.setText("");
+        Apellido.setText("");
+        correo.setText("");
+        matricula.setText("");
+    }
+     
     public void deshabilitar(JTextField curp,JTextField nombre,JTextField apellidop,JTextField apellidom,JTextField tel){
         curp.setEnabled(false);
         nombre.setEnabled(false);
@@ -77,5 +91,57 @@ public class Logic_Code {
         labelsito.setBackground(new Color(25,31,86));
     }
     
-    
+    public static void mostrar(javax.swing.JTable tabla){
+    Cruds s = new Cruds();
+
+    try {
+        s.getCon();
+        ResultSet query = s.getSt().executeQuery("SELECT * FROM alumnos");
+        
+        ArrayList<Alumnos> lista = new ArrayList<>();
+        
+        while(query.next()){
+            String nombre = query.getString("nombre");
+            String apellido = query.getString("apellido");
+            String correo = query.getString("correo");
+            String matricula = query.getString("matricula");
+            String estatus = query.getString("estatus");
+
+            Alumnos alu = new Alumnos(nombre, apellido, correo, matricula, estatus);
+            lista.add(alu);
+        }
+
+        tabla.setModel(tablita(lista));  // ← AQUÍ YA FUNCIONA
+
+        query.close();
+        s.getCon().close();
+    } catch(SQLException ex){
+        System.out.println(ex.getMessage());
+    }
+}
+
+                                                    
+//Relleno de la tabla 
+    public static DefaultTableModel tablita(ArrayList<Alumnos> lista){
+    DefaultTableModel m = new DefaultTableModel();
+
+    m.addColumn("NOMBRE");
+    m.addColumn("APELLIDO");
+    m.addColumn("CORREO");
+    m.addColumn("MATRICULA");
+    m.addColumn("ESTATUS");
+
+    for(Alumnos a : lista){
+        Object[] fila = new Object[5];
+        fila[0] = a.getNombre();
+        fila[1] = a.getApellido();
+        fila[2] = a.getCorreo();
+        fila[3] = a.getMatricula();
+        fila[4] = a.getEstatus();
+        m.addRow(fila);
+    }
+
+    return m;
+}
+
 }

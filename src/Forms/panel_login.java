@@ -130,8 +130,9 @@ public class panel_login extends javax.swing.JPanel {
 
         lblinisiar.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         lblinisiar.setForeground(new java.awt.Color(255, 255, 255));
-        lblinisiar.setText("       INICIAR SESION");
-        lblinisiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblinisiar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblinisiar.setText("INICIAR SESION");
+        lblinisiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblinisiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblinisiarMouseEntered(evt);
@@ -143,7 +144,7 @@ public class panel_login extends javax.swing.JPanel {
                 lblinisiarMousePressed(evt);
             }
         });
-        pnlbtninisiar.add(lblinisiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -1, 150, 40));
+        pnlbtninisiar.add(lblinisiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 40));
 
         add(pnlbtninisiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 480, 150, 40));
 
