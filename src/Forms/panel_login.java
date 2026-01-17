@@ -108,7 +108,7 @@ public class panel_login extends javax.swing.JPanel {
         lbluser.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         lbluser.setText("USUARIO");
         add(lbluser, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, -1, -1));
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 380, -1));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 380, 20));
 
         lblpsw.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         lblpsw.setText("CONTRASEÑA");
@@ -218,6 +218,7 @@ public class panel_login extends javax.swing.JPanel {
             // aqui voy al framesito xd, pero no se como.
             System.out.println("Etrando xd");
             referenciaMainP.showMainContent();
+            lblerror.setVisible(false);
         }else{
             System.out.println("Tambien entro");
             lblerror.setVisible(true);

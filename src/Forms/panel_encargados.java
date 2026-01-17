@@ -4,6 +4,9 @@
  */
 package Forms;
 
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
 /**
  *
  * @author david
@@ -26,31 +29,203 @@ public class panel_encargados extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEncargados = new javax.swing.JTable();
+        jSeparator1 = new javax.swing.JSeparator();
+        lblEncargados = new javax.swing.JLabel();
+        jtxtNoEmpleado = new javax.swing.JTextField();
+        jtxtNombre = new javax.swing.JTextField();
+        jtxtApellidoPEnc = new javax.swing.JTextField();
+        jtxtApellidoMEnc = new javax.swing.JTextField();
+        lblEncNoEm = new javax.swing.JLabel();
+        lblEncNombre = new javax.swing.JLabel();
+        lblEncAPat = new javax.swing.JLabel();
+        lblEncAMat = new javax.swing.JLabel();
+        btnNuevoEnc = new javax.swing.JButton();
+        btnBorrarEnc1 = new javax.swing.JButton();
+        btnMostrarEnc = new javax.swing.JButton();
+        jtxtUsuarioEnc = new javax.swing.JTextField();
+        lblEncUser = new javax.swing.JLabel();
+        lblEncPsw = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
-        jLabel1.setText("encargados");
+        tblEncargados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblEncargados);
+
+        lblEncargados.setFont(new java.awt.Font("Cantarell", 1, 36)); // NOI18N
+        lblEncargados.setText("Encargados");
+
+        lblEncNoEm.setText("Numero de empleado");
+
+        lblEncNombre.setText("Nombre(s)");
+
+        lblEncAPat.setText("Apellido Paterno");
+
+        lblEncAMat.setText("Apellido Materno");
+
+        btnNuevoEnc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/0.png"))); // NOI18N
+        btnNuevoEnc.setText("Nuevo Encargado");
+        btnNuevoEnc.setBorder(null);
+        btnNuevoEnc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoEncActionPerformed(evt);
+            }
+        });
+
+        btnBorrarEnc1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/basura.png"))); // NOI18N
+        btnBorrarEnc1.setText("Borrar");
+        btnBorrarEnc1.setBorder(null);
+
+        btnMostrarEnc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/busca.png"))); // NOI18N
+        btnMostrarEnc.setText("Mostrar");
+        btnMostrarEnc.setBorder(null);
+
+        lblEncUser.setText("Nombre de usuario");
+
+        lblEncPsw.setText("Contraseña");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEncargados)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnNuevoEnc)
+                                .addGap(40, 40, 40)
+                                .addComponent(btnBorrarEnc1)
+                                .addGap(37, 37, 37)
+                                .addComponent(btnMostrarEnc))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jtxtNoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblEncNoEm))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblEncNombre)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jtxtApellidoMEnc, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblEncAMat))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblEncUser)
+                                            .addComponent(jtxtUsuarioEnc, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblEncPsw)
+                                    .addComponent(jtxtApellidoPEnc, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                                    .addComponent(lblEncAPat)
+                                    .addComponent(jPasswordField1))))))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(lblEncargados)
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEncNombre)
+                    .addComponent(lblEncNoEm)
+                    .addComponent(lblEncAPat))
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtxtNoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtApellidoPEnc, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEncUser)
+                    .addComponent(lblEncAMat)
+                    .addComponent(lblEncPsw))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtxtApellidoMEnc, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtUsuarioEnc, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNuevoEnc)
+                    .addComponent(btnBorrarEnc1)
+                    .addComponent(btnMostrarEnc))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnNuevoEncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoEncActionPerformed
+        String sql="INSERT INTO encargados"+"(no_empleado,nombre,apellido_paterno,apellido_materno,usuario,password_hash) "+"VALUES (?, ?, ?, ?, ?, crypt(?, gen_salt('bf')))";
+        Cruds s=new Cruds();
+        PreparedStatement pst=null;
+        
+        try{
+            s.getCon();
+            pst =s.con.prepareStatement(sql);
+        
+        // Pasamos los datos de tus JTextFields del panel_encargados
+        pst.setString(1, jtxtNoEmpleado.getText());
+        pst.setString(2, jtxtNombre.getText());
+        pst.setString(3, jtxtApellidoPEnc.getText());
+        pst.setString(4, jtxtApellidoMEnc.getText());
+        pst.setString(5, String.valueOf(jtxtUsuarioEnc.getText()));
+        pst.setString(6, String.valueOf(jPasswordField1.getPassword()));
+        s.st.executeUpdate(sql);
+        JOptionPane.showMessageDialog(this, "Dato agregado con exito");
+
+       }catch(SQLException ex){
+           System.out.println(ex.getMessage());
+           JOptionPane.showMessageDialog(this, "Tabla no encontrada","Error", JOptionPane.ERROR_MESSAGE);
+        } 
+        
+        
+    }//GEN-LAST:event_btnNuevoEncActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnBorrarEnc1;
+    private javax.swing.JButton btnMostrarEnc;
+    private javax.swing.JButton btnNuevoEnc;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jtxtApellidoMEnc;
+    private javax.swing.JTextField jtxtApellidoPEnc;
+    private javax.swing.JTextField jtxtNoEmpleado;
+    private javax.swing.JTextField jtxtNombre;
+    private javax.swing.JTextField jtxtUsuarioEnc;
+    private javax.swing.JLabel lblEncAMat;
+    private javax.swing.JLabel lblEncAPat;
+    private javax.swing.JLabel lblEncNoEm;
+    private javax.swing.JLabel lblEncNombre;
+    private javax.swing.JLabel lblEncPsw;
+    private javax.swing.JLabel lblEncUser;
+    private javax.swing.JLabel lblEncargados;
+    private javax.swing.JTable tblEncargados;
     // End of variables declaration//GEN-END:variables
 }

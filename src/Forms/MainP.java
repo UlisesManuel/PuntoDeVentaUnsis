@@ -26,9 +26,10 @@ public JPanel panelGeneral;
     private static final String PANEL_ENCARGADOS = "Panel encargados";
     private static final String PANEL_PACIENTES = "Panel pacientes";
     private static final String PANEL_TRATAMIENTOS = "Panel tratamientos";
+    private static final String PANEL_VENTA="Panel venta";
 
-    private panel_admin_clinicos pAdminClinicos;
-    private panel_area_clinica pAreaClinica;
+    private panel_ventas pAdminClinicos;
+    private panel_inventario pAreaClinica;
     private panel_capturadores pCapturadores;
     private panel_carga_alumnos pCargaAlum;
     private panel_carga_archivos pCargaArchi;
@@ -92,8 +93,8 @@ public JPanel panelGeneral;
     }
     
     private void instanciarPaneles(){
-        pAdminClinicos = new panel_admin_clinicos();
-        pAreaClinica = new panel_area_clinica();
+        pAdminClinicos = new panel_ventas();
+        pAreaClinica = new panel_inventario();
         pCapturadores = new panel_capturadores();
         pCargaAlum = new panel_carga_alumnos();
         pCargaArchi = new panel_carga_archivos();
@@ -155,12 +156,17 @@ public JPanel panelGeneral;
         lbl_icono_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/diente.png"))); // NOI18N
         lbl_icono_logo.setText("UnsiSoft+");
         lbl_icono_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbl_icono_logo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_icono_logoMouseClicked(evt);
+            }
+        });
         panel_buttons.add(lbl_icono_logo);
 
         lbl_admin_clinicos.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         lbl_admin_clinicos.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_admin_clinicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/1.png"))); // NOI18N
-        lbl_admin_clinicos.setText("Admins. Clinicos");
+        lbl_admin_clinicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/3.png"))); // NOI18N
+        lbl_admin_clinicos.setText("Punto de Cobro");
         lbl_admin_clinicos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lbl_admin_clinicos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -286,7 +292,7 @@ public JPanel panelGeneral;
         lbl_areas_clinicas.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         lbl_areas_clinicas.setForeground(new java.awt.Color(255, 255, 255));
         lbl_areas_clinicas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/5.png"))); // NOI18N
-        lbl_areas_clinicas.setText("Areas clinicas");
+        lbl_areas_clinicas.setText("Inventario");
         lbl_areas_clinicas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lbl_areas_clinicas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -438,6 +444,10 @@ public JPanel panelGeneral;
     private void lbl_log_outMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_log_outMouseExited
         Logic_Code.restaurarLabel(lbl_log_out);
     }//GEN-LAST:event_lbl_log_outMouseExited
+
+    private void lbl_icono_logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_icono_logoMouseClicked
+        showPanel(PANEL_VENTA);
+    }//GEN-LAST:event_lbl_icono_logoMouseClicked
     
     public void showMainContent() {
     layoutFrame.show(panelGeneral, "Todo el contenido");
