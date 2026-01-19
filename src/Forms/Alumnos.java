@@ -10,18 +10,18 @@ package Forms;
  */
 public class Alumnos {
    
-    private String nombre;
-    private String apellido;
-    private String correo;
-    private String matricula;
-    private String estatus;
+     String nombre;
+     String apellido;
+     String correo;
+     String matricula;
+     String estatus;
 
-    public Alumnos (String nombre, String apellido, String correo, String matricula, String estatus){
+    public Alumnos (String nombre, String apellido, String correo, String matricula){
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.matricula = matricula;
-        this.estatus = estatus;
+       
     }
 
     public String getNombre(){ return nombre; }

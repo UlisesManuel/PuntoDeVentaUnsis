@@ -105,9 +105,9 @@ public class Logic_Code {
             String apellido = query.getString("apellido");
             String correo = query.getString("correo");
             String matricula = query.getString("matricula");
-            String estatus = query.getString("estatus");
+           // String estatus = query.getString("estatus");
 
-            Alumnos alu = new Alumnos(nombre, apellido, correo, matricula, estatus);
+            Alumnos alu = new Alumnos(nombre, apellido, correo, matricula);
             lista.add(alu);
         }
 
@@ -129,7 +129,7 @@ public class Logic_Code {
     m.addColumn("APELLIDO");
     m.addColumn("CORREO");
     m.addColumn("MATRICULA");
-    m.addColumn("ESTATUS");
+  //  m.addColumn("ESTATUS");
 
     for(Alumnos a : lista){
         Object[] fila = new Object[5];
@@ -137,11 +137,64 @@ public class Logic_Code {
         fila[1] = a.getApellido();
         fila[2] = a.getCorreo();
         fila[3] = a.getMatricula();
-        fila[4] = a.getEstatus();
+   //     fila[4] = a.getEstatus();
         m.addRow(fila);
     }
 
     return m;
 }
+    public static void mostrarEncargados(javax.swing.JTable tabla){
+    Cruds s = new Cruds();
+
+    try {
+        s.getCon();
+        ResultSet query = s.getSt().executeQuery(
+            "SELECT no_empleado, nombre, apellido_paterno, apellido_materno, usuario FROM encargados"
+        );
+
+        ArrayList<Encargados> lista = new ArrayList<>();
+
+        while(query.next()){
+            String noEmpleado = query.getString("no_empleado");
+            String nombre = query.getString("nombre");
+            String apellidos = query.getString("apellido_paterno") + " " +
+                               query.getString("apellido_materno");
+            String usuario = query.getString("usuario");
+
+            Encargados enc = new Encargados(noEmpleado, nombre, apellidos, usuario);
+            lista.add(enc);
+        }
+
+        tabla.setModel(tblEncargados(lista));
+
+        query.close();
+        s.getCon().close();
+
+    } catch(SQLException ex){
+        System.out.println(ex.getMessage());
+    }
+}
+
+    public static DefaultTableModel tblEncargados(ArrayList<Encargados> lista){
+    DefaultTableModel m = new DefaultTableModel();
+
+    m.addColumn("NUM. EMPLEADO");
+    m.addColumn("NOMBRE");
+    m.addColumn("APELLIDOS");
+    m.addColumn("USUARIO");
+
+    for(Encargados e : lista){
+        Object[] fila = new Object[4];
+        fila[0] = e.getNoEmpleado();
+        fila[1] = e.getNombre();
+        fila[2] = e.getApellidos();
+        fila[3] = e.getUsuario();
+        m.addRow(fila);
+    }
+
+    return m;
+}
+
+   
 
 }

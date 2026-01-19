@@ -262,13 +262,13 @@ public class panel_carga_alumnos extends javax.swing.JPanel {
 
          validaciones check=new validaciones();
          Logic_Code l=new Logic_Code();
-//        if(check.campos2(Nombre, Apellido, correo, matricula)==true){
+        if(check.campos2(Nombre, Apellido, correo, matricula)==true){
 //           Logic_Code l=new Logic_Code();
         Cruds s=new Cruds();
         try{
             s.getCon();
-            String values="('"+Nombre.getText()+"','"+Apellido.getText()+"','"+correo.getText()+"','"+matricula.getText()+"';";
-            String sql="INSERT INTO alumnos"+"(curp,nombres,apellido_paterno,apellido_materno,telefono) "+"VALUES "+values;
+            String values="('"+Nombre.getText()+"','"+Apellido.getText()+"','"+correo.getText()+"','"+matricula.getText()+"')";
+            String sql="INSERT INTO alumnos"+"(nombre,apellido,correo,matricula) "+"VALUES "+values;
             s.st.executeUpdate(sql);
             JOptionPane.showMessageDialog(this, "Dato agregado con exito");
             l.limpiar2(Nombre, Apellido, correo, matricula);
@@ -277,8 +277,8 @@ public class panel_carga_alumnos extends javax.swing.JPanel {
            JOptionPane.showMessageDialog(this, "Tabla no encontrada","Error", JOptionPane.ERROR_MESSAGE);
     }                                         
 
-                                              
-//        }  
+                                               
+        }  
          Logic_Code.mostrar(alumnos);
     }//GEN-LAST:event_GuardarActionPerformed
 

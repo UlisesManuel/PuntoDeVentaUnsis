@@ -18,6 +18,8 @@ public class panel_encargados extends javax.swing.JPanel {
      */
     public panel_encargados() {
         initComponents();
+        Logic_Code.mostrarEncargados(tblEncargados);
+        SeleccionadoEncargados();
     }
 
     /**
@@ -57,7 +59,7 @@ public class panel_encargados extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Num. Empleado", "Nombre", "Apellidos", "Usuario"
             }
         ));
         jScrollPane1.setViewportView(tblEncargados);
@@ -85,10 +87,20 @@ public class panel_encargados extends javax.swing.JPanel {
         btnBorrarEnc1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/basura.png"))); // NOI18N
         btnBorrarEnc1.setText("Borrar");
         btnBorrarEnc1.setBorder(null);
+        btnBorrarEnc1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarEnc1ActionPerformed(evt);
+            }
+        });
 
         btnMostrarEnc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/busca.png"))); // NOI18N
         btnMostrarEnc.setText("Mostrar");
         btnMostrarEnc.setBorder(null);
+        btnMostrarEnc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarEncActionPerformed(evt);
+            }
+        });
 
         lblEncUser.setText("Nombre de usuario");
 
@@ -180,31 +192,111 @@ public class panel_encargados extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoEncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoEncActionPerformed
-        String sql="INSERT INTO encargados"+"(no_empleado,nombre,apellido_paterno,apellido_materno,usuario,password_hash) "+"VALUES (?, ?, ?, ?, ?, crypt(?, gen_salt('bf')))";
-        Cruds s=new Cruds();
-        PreparedStatement pst=null;
-        
-        try{
-            s.getCon();
-            pst =s.con.prepareStatement(sql);
-        
-        // Pasamos los datos de tus JTextFields del panel_encargados
+        String sql = "INSERT INTO encargados "
+        + "(no_empleado, nombre, apellido_paterno, apellido_materno, usuario, password_hash) "
+        + "VALUES (?, ?, ?, ?, ?, crypt(?, gen_salt('bf')))";
+
+    Cruds s = new Cruds();
+    PreparedStatement pst;
+
+    try {
+        s.getCon();
+        pst = s.con.prepareStatement(sql);
+
         pst.setString(1, jtxtNoEmpleado.getText());
         pst.setString(2, jtxtNombre.getText());
         pst.setString(3, jtxtApellidoPEnc.getText());
         pst.setString(4, jtxtApellidoMEnc.getText());
-        pst.setString(5, String.valueOf(jtxtUsuarioEnc.getText()));
+        pst.setString(5, jtxtUsuarioEnc.getText());
         pst.setString(6, String.valueOf(jPasswordField1.getPassword()));
-        s.st.executeUpdate(sql);
-        JOptionPane.showMessageDialog(this, "Dato agregado con exito");
 
-       }catch(SQLException ex){
-           System.out.println(ex.getMessage());
-           JOptionPane.showMessageDialog(this, "Tabla no encontrada","Error", JOptionPane.ERROR_MESSAGE);
-        } 
+        pst.executeUpdate(); 
+
+        JOptionPane.showMessageDialog(this, "Encargado agregado con éxito");
+        
+        limpiarCamposEncargados();
+        
+        tblEncargados.clearSelection();
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+        JOptionPane.showMessageDialog(this, "Error al insertar encargado", "Error", JOptionPane.ERROR_MESSAGE);
+    }
         
         
     }//GEN-LAST:event_btnNuevoEncActionPerformed
+
+    private void btnMostrarEncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarEncActionPerformed
+        // TODO add your handling code here:
+        Logic_Code.mostrarEncargados(tblEncargados);
+    }//GEN-LAST:event_btnMostrarEncActionPerformed
+
+    private void btnBorrarEnc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarEnc1ActionPerformed
+        // TODO add your handling code here:
+       if (jtxtNoEmpleado.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Selecciona un encargado", "Aviso", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    int confirm = JOptionPane.showConfirmDialog(
+        this,
+        "Este encargado se borrará permanentemente.\n¿Deseas continuar?",
+        "Advertencia",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.WARNING_MESSAGE
+    );
+
+    if (confirm == JOptionPane.YES_OPTION) {
+        Cruds s = new Cruds();
+        try {
+            s.getCon();
+            String sql = "DELETE FROM encargados WHERE no_empleado='" + jtxtNoEmpleado.getText() + "'";
+            s.st.executeUpdate(sql);
+
+            JOptionPane.showMessageDialog(this, "Encargado eliminado con éxito");
+
+            Logic_Code.mostrarEncargados(tblEncargados);
+
+            // Limpia campos
+            jtxtNoEmpleado.setText("");
+            jtxtNombre.setText("");
+            jtxtApellidoPEnc.setText("");
+            jtxtApellidoMEnc.setText("");
+            jtxtUsuarioEnc.setText("");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al borrar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+   
+    }//GEN-LAST:event_btnBorrarEnc1ActionPerformed
+
+    private void SeleccionadoEncargados() {
+    tblEncargados.getSelectionModel().addListSelectionListener(e -> {
+        if (!e.getValueIsAdjusting() && tblEncargados.getSelectedRow() != -1) {
+            int fila = tblEncargados.getSelectedRow();
+
+            jtxtNoEmpleado.setText(tblEncargados.getValueAt(fila, 0).toString());
+            jtxtNombre.setText(tblEncargados.getValueAt(fila, 1).toString());
+
+            String apellidos = tblEncargados.getValueAt(fila, 2).toString();
+            String[] partes = apellidos.split(" ", 2);
+            jtxtApellidoPEnc.setText(partes[0]);
+            jtxtApellidoMEnc.setText(partes.length > 1 ? partes[1] : "");
+
+            jtxtUsuarioEnc.setText(tblEncargados.getValueAt(fila, 3).toString());
+        }
+    });
+}
+
+    private void limpiarCamposEncargados() {
+    jtxtNoEmpleado.setText("");
+    jtxtNombre.setText("");
+    jtxtApellidoPEnc.setText("");
+    jtxtApellidoMEnc.setText("");
+    jtxtUsuarioEnc.setText("");
+    jPasswordField1.setText("");
+}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
