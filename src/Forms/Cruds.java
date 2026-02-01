@@ -7,6 +7,9 @@ package Forms;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -31,10 +34,42 @@ public class Cruds {
         try{
             
             con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/puntov", "ulises", "manuel300805");
-            st=con.createStatement();
-            System.out.println("Conexion exitosa");
+            st=con.createStatement();;
         }catch(Exception ex){
         System.out.println(ex.getMessage());
     }
+    }
+    public double obtenerPrecioDB(String id, String columnaPrecio) {
+        double precio = 0;
+        // IMPORTANTE: En SQL, los nombres de columnas no pueden ir con "?" 
+        // Por eso concatenamos la variable 'columnaPrecio' directamente.
+        String sql = "SELECT " + columnaPrecio + " FROM tratamientos WHERE id_tratamiento = ?";
+
+        try {
+            // Aseguramos que la conexión esté abierta
+            if (this.con == null || this.con.isClosed()) {
+                getCon(); 
+            }
+
+            PreparedStatement pst = this.con.prepareStatement(sql);
+            // Convertimos el String id a Integer porque en la DB suele ser numérico
+            pst.setInt(1, Integer.parseInt(id));
+
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                precio = rs.getDouble(1); // Obtenemos el valor de la columna solicitada
+            }
+
+            rs.close();
+            pst.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error en obtenerPrecioDB: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Error: El ID no es un número válido.");
+        }
+
+        return precio;
     }
 }

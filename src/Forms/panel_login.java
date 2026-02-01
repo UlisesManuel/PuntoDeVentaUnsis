@@ -1,6 +1,8 @@
 package Forms;
 import java.awt.Color;
-
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -195,7 +197,7 @@ public class panel_login extends javax.swing.JPanel {
         txtuser.setForeground(Color.gray);
         }
     }//GEN-LAST:event_pswFielMousePressed
-
+    
     private void pswFielActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pswFielActionPerformed
         
     }//GEN-LAST:event_pswFielActionPerformed
@@ -209,22 +211,47 @@ public class panel_login extends javax.swing.JPanel {
     }//GEN-LAST:event_pnlbtninisiarFocusGained
 
     private void lblinisiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblinisiarMousePressed
-        String cont="UNSIS";
-        String use="Admin";
         
-        if(txtuser.getText().equals(use) && String.valueOf(pswFiel.getPassword()).equals(cont)){
+        
+        if(validarLogin()){
             txtuser.setText("");
             pswFiel.setText("");
             // aqui voy al framesito xd, pero no se como.
-            System.out.println("Etrando xd");
+            
             referenciaMainP.showMainContent();
             lblerror.setVisible(false);
         }else{
-            System.out.println("Tambien entro");
             lblerror.setVisible(true);
         }
     }//GEN-LAST:event_lblinisiarMousePressed
+    public boolean validarLogin() {
+        String user = txtuser.getText();
+        String pse = String.valueOf(pswFiel.getPassword());
+        Cruds s = new Cruds();
+        PreparedStatement pst;
 
+        String sql = "SELECT no_empleado, nombre FROM encargados WHERE usuario = ? AND password_hash = crypt(?, password_hash)";
+
+        try {
+            s.getCon();
+            pst = s.con.prepareStatement(sql);
+            pst.setString(1, user);
+            pst.setString(2, pse);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                
+                Sesion.noEmpleado = rs.getString("no_empleado");
+
+                Sesion.nombreEmpleado = rs.getString("nombre");
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            System.err.println("Error en login: " + e.getMessage());
+            return false;
+        }
+    }
     private void lblinisiarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblinisiarMouseExited
         pnlbtninisiar.setBackground(new Color(25,31,86));
     }//GEN-LAST:event_lblinisiarMouseExited

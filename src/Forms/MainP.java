@@ -30,7 +30,6 @@ public JPanel panelGeneral;
 
     private panel_ventas pAdminClinicos;
     private panel_inventario pAreaClinica;
-    private panel_capturadores pCapturadores;
     private panel_carga_alumnos pCargaAlum;
     private panel_carga_archivos pCargaArchi;
     private panel_encargados pEncargados;
@@ -95,7 +94,6 @@ public JPanel panelGeneral;
     private void instanciarPaneles(){
         pAdminClinicos = new panel_ventas();
         pAreaClinica = new panel_inventario();
-        pCapturadores = new panel_capturadores();
         pCargaAlum = new panel_carga_alumnos();
         pCargaArchi = new panel_carga_archivos();
         pEncargados = new panel_encargados();
@@ -106,7 +104,6 @@ public JPanel panelGeneral;
     private void addPaneles(){
         panel_content.add(pAdminClinicos, PANEL_ADMIN_CLINICOS);
         panel_content.add(pAreaClinica, PANEL_AREA_CLINICA);
-        panel_content.add(pCapturadores, PANEL_CAPTURADORES);
         panel_content.add(pCargaAlum, PANEL_CARGA_ALUMNOS);
         panel_content.add(pCargaArchi, PANEL_CARGA_ARCHIVOS);
         panel_content.add(pEncargados, PANEL_ENCARGADOS);
@@ -115,7 +112,7 @@ public JPanel panelGeneral;
     }
  
     public void ajustarLabels() {
-        Logic_Code.ajustarMedidas(lbl_icono_logo,lbl_admin_clinicos,lbl_areas_clinicas,lbl_capturadores,
+        Logic_Code.ajustarMedidas(lbl_icono_logo,lbl_admin_clinicos,lbl_areas_clinicas,
                 lbl_carga_alumnos,lbl_carga_archivos,lbl_encargados,
                 lbl_log_out,lbl_pacientes,lbl_tratamientos);
     }
@@ -134,7 +131,6 @@ public JPanel panelGeneral;
         lbl_admin_clinicos = new javax.swing.JLabel();
         lbl_encargados = new javax.swing.JLabel();
         lbl_pacientes = new javax.swing.JLabel();
-        lbl_capturadores = new javax.swing.JLabel();
         lbl_tratamientos = new javax.swing.JLabel();
         lbl_carga_alumnos = new javax.swing.JLabel();
         lbl_carga_archivos = new javax.swing.JLabel();
@@ -216,24 +212,6 @@ public JPanel panelGeneral;
             }
         });
         panel_buttons.add(lbl_pacientes);
-
-        lbl_capturadores.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
-        lbl_capturadores.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_capturadores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/1.png"))); // NOI18N
-        lbl_capturadores.setText("Capturadores");
-        lbl_capturadores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lbl_capturadores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbl_capturadoresMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lbl_capturadoresMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lbl_capturadoresMouseExited(evt);
-            }
-        });
-        panel_buttons.add(lbl_capturadores);
 
         lbl_tratamientos.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         lbl_tratamientos.setForeground(new java.awt.Color(255, 255, 255));
@@ -372,18 +350,6 @@ public JPanel panelGeneral;
         Logic_Code.restaurarLabel(lbl_pacientes);
     }//GEN-LAST:event_lbl_pacientesMouseExited
 
-    private void lbl_capturadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_capturadoresMouseClicked
-        showPanel(PANEL_CAPTURADORES);
-    }//GEN-LAST:event_lbl_capturadoresMouseClicked
-
-    private void lbl_capturadoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_capturadoresMouseEntered
-        Logic_Code.resaltarLabel(lbl_capturadores);
-    }//GEN-LAST:event_lbl_capturadoresMouseEntered
-
-    private void lbl_capturadoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_capturadoresMouseExited
-        Logic_Code.restaurarLabel(lbl_capturadores);
-    }//GEN-LAST:event_lbl_capturadoresMouseExited
-
     private void lbl_tratamientosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_tratamientosMouseClicked
         showPanel(PANEL_TRATAMIENTOS);
     }//GEN-LAST:event_lbl_tratamientosMouseClicked
@@ -497,7 +463,6 @@ public JPanel panelGeneral;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbl_admin_clinicos;
     private javax.swing.JLabel lbl_areas_clinicas;
-    private javax.swing.JLabel lbl_capturadores;
     private javax.swing.JLabel lbl_carga_alumnos;
     private javax.swing.JLabel lbl_carga_archivos;
     private javax.swing.JLabel lbl_encargados;

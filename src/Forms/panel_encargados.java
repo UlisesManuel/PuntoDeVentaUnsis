@@ -34,7 +34,6 @@ public class panel_encargados extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEncargados = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
-        lblEncargados = new javax.swing.JLabel();
         jtxtNoEmpleado = new javax.swing.JTextField();
         jtxtNombre = new javax.swing.JTextField();
         jtxtApellidoPEnc = new javax.swing.JTextField();
@@ -50,6 +49,10 @@ public class panel_encargados extends javax.swing.JPanel {
         lblEncUser = new javax.swing.JLabel();
         lblEncPsw = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jPanel1 = new javax.swing.JPanel();
+        lblEncargados = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         tblEncargados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,9 +66,6 @@ public class panel_encargados extends javax.swing.JPanel {
             }
         ));
         jScrollPane1.setViewportView(tblEncargados);
-
-        lblEncargados.setFont(new java.awt.Font("Cantarell", 1, 36)); // NOI18N
-        lblEncargados.setText("Encargados");
 
         lblEncNoEm.setText("Numero de empleado");
 
@@ -106,6 +106,28 @@ public class panel_encargados extends javax.swing.JPanel {
 
         lblEncPsw.setText("Contraseña");
 
+        jPanel1.setBackground(new java.awt.Color(25, 31, 86));
+        jPanel1.setPreferredSize(new java.awt.Dimension(544, 84));
+
+        lblEncargados.setFont(new java.awt.Font("Cantarell", 1, 48)); // NOI18N
+        lblEncargados.setForeground(new java.awt.Color(255, 255, 255));
+        lblEncargados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/equipo-medico.png"))); // NOI18N
+        lblEncargados.setText(" Encargados");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(lblEncargados, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblEncargados, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,53 +136,51 @@ public class panel_encargados extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEncargados)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnNuevoEnc)
-                                .addGap(40, 40, 40)
-                                .addComponent(btnBorrarEnc1)
-                                .addGap(37, 37, 37)
-                                .addComponent(btnMostrarEnc))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtxtNoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblEncNoEm))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblEncNombre)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jtxtNoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblEncNoEm))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblEncNombre)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jtxtApellidoMEnc, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblEncAMat))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblEncUser)
-                                            .addComponent(jtxtUsuarioEnc, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(36, 36, 36)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblEncPsw)
-                                    .addComponent(jtxtApellidoPEnc, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                                    .addComponent(lblEncAPat)
-                                    .addComponent(jPasswordField1))))))
-                .addContainerGap(55, Short.MAX_VALUE))
+                                    .addComponent(jtxtApellidoMEnc, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblEncAMat))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblEncUser)
+                                    .addComponent(jtxtUsuarioEnc, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnNuevoEnc)
+                                .addGap(40, 40, 40)
+                                .addComponent(btnBorrarEnc1)))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblEncPsw)
+                            .addComponent(jtxtApellidoPEnc, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                            .addComponent(lblEncAPat)
+                            .addComponent(jPasswordField1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMostrarEnc)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(67, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 955, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(lblEncargados)
-                .addGap(29, 29, 29)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnMostrarEnc)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(42, 42, 42)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -185,9 +205,8 @@ public class panel_encargados extends javax.swing.JPanel {
                 .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevoEnc)
-                    .addComponent(btnBorrarEnc1)
-                    .addComponent(btnMostrarEnc))
-                .addContainerGap(104, Short.MAX_VALUE))
+                    .addComponent(btnBorrarEnc1))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -226,12 +245,12 @@ public class panel_encargados extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNuevoEncActionPerformed
 
     private void btnMostrarEncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarEncActionPerformed
-        // TODO add your handling code here:
+
         Logic_Code.mostrarEncargados(tblEncargados);
     }//GEN-LAST:event_btnMostrarEncActionPerformed
 
     private void btnBorrarEnc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarEnc1ActionPerformed
-        // TODO add your handling code here:
+
        if (jtxtNoEmpleado.getText().isEmpty()) {
         JOptionPane.showMessageDialog(this, "Selecciona un encargado", "Aviso", JOptionPane.WARNING_MESSAGE);
         return;
@@ -303,6 +322,7 @@ public class panel_encargados extends javax.swing.JPanel {
     private javax.swing.JButton btnBorrarEnc1;
     private javax.swing.JButton btnMostrarEnc;
     private javax.swing.JButton btnNuevoEnc;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

@@ -3,18 +3,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Forms;
-
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JTable;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author david
  */
 public class panel_tratamientos extends javax.swing.JPanel {
-
+    Logic_Code l=new Logic_Code();
+    int tratID=-1;
     /**
      * Creates new form panel_tratamientos
      */
     public panel_tratamientos() {
         initComponents();
+        l.mostrarTrat(tblPtrat);
+        Seleccionado();
     }
 
     /**
@@ -28,19 +36,26 @@ public class panel_tratamientos extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTratamientos = new javax.swing.JTable();
-        jSeparator1 = new javax.swing.JSeparator();
-        lbllogoProductos = new javax.swing.JLabel();
-        inpuIDTratamiento = new javax.swing.JTextField();
-        inputNombreTratamiento = new javax.swing.JTextField();
         inputTratamiento = new javax.swing.JTextField();
-        inputPrecioTratamiento = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        inputPrecioCunsis = new javax.swing.JTextField();
+        btnNewTrat = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblBuscarTratatxt = new javax.swing.JLabel();
         inputBuscarTratamiento = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblPtrat = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        pnlHeader = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        lbllogoProductos = new javax.swing.JLabel();
+        lblPunsi = new javax.swing.JLabel();
+        lblPparticular = new javax.swing.JLabel();
+        inputPrecioUnsis = new javax.swing.JTextField();
+        inputPrecioParticular = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -57,25 +72,35 @@ public class panel_tratamientos extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblTratamientos);
 
-        lbllogoProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/diagnostico.png"))); // NOI18N
-
-        jLabel1.setFont(new java.awt.Font("Cantarell", 1, 36)); // NOI18N
-        jLabel1.setText("Tratamientos");
-
-        jLabel2.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/insertar.png"))); // NOI18N
-        jLabel2.setText("Nuevo Tratamiento");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNewTrat.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
+        btnNewTrat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/insertar.png"))); // NOI18N
+        btnNewTrat.setText("Nuevo Tratamiento");
+        btnNewTrat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNewTrat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNewTratMouseClicked(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/basura.png"))); // NOI18N
         jLabel3.setText("Borrar Tratamiento");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/boligrafo.png"))); // NOI18N
         jLabel4.setText("Modificar Tratamiento");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         lblBuscarTratatxt.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         lblBuscarTratatxt.setText("Buscar Tratamiento");
@@ -84,99 +109,392 @@ public class panel_tratamientos extends javax.swing.JPanel {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/busca.png"))); // NOI18N
         jLabel5.setText("Actualizar ");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+
+        lblNombre.setText("Nombre");
+
+        jLabel6.setText("Precio comunidad unsis");
+
+        tblPtrat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nombre", "Cantidad", "Seleccionar"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblPtrat);
+
+        jLabel7.setText("Insumos Implementados");
+
+        pnlHeader.setBackground(new java.awt.Color(25, 31, 86));
+        pnlHeader.setPreferredSize(new java.awt.Dimension(544, 84));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Cantarell", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Tratamientos");
+
+        lbllogoProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/diagnostico.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
+        pnlHeader.setLayout(pnlHeaderLayout);
+        pnlHeaderLayout.setHorizontalGroup(
+            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHeaderLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(lbllogoProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlHeaderLayout.setVerticalGroup(
+            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeaderLayout.createSequentialGroup()
+                .addGap(0, 3, Short.MAX_VALUE)
+                .addComponent(lbllogoProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlHeaderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        lblPunsi.setText("Precio UNSIS");
+
+        lblPparticular.setText("Precio Particular");
+
+        inputPrecioParticular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputPrecioParticularActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(lbllogoProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(50, 50, 50)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(inputBuscarTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblBuscarTratatxt))
-                .addGap(97, 97, 97))
             .addGroup(layout.createSequentialGroup()
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnNewTrat)
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblNombre)
+                                    .addComponent(inputTratamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                    .addComponent(lblPunsi)
+                                    .addComponent(inputPrecioUnsis))
+                                .addGap(46, 46, 46)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblPparticular)
+                                    .addComponent(inputPrecioCunsis, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(inputPrecioParticular))
+                                .addGap(58, 58, 58)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addGap(61, 61, 61))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(inpuIDTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63)
-                        .addComponent(inputNombreTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(inputTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(inputPrecioTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jLabel2)
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel3)
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabel4)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblBuscarTratatxt)
+                            .addComponent(inputBuscarTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(105, 105, 105))))
+            .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblBuscarTratatxt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputBuscarTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7)
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblBuscarTratatxt)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(inputBuscarTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)))
-                            .addComponent(lbllogoProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(inputPrecioTratamiento)
-                    .addComponent(inputTratamiento)
-                    .addComponent(inputNombreTratamiento)
-                    .addComponent(inpuIDTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(196, Short.MAX_VALUE))
+                                .addComponent(lblNombre)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(inputTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(inputPrecioCunsis, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPunsi)
+                            .addComponent(lblPparticular))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(inputPrecioUnsis, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                            .addComponent(inputPrecioParticular))
+                        .addGap(94, 94, 94)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnNewTrat)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))))
+                .addGap(37, 37, 37))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnNewTratMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewTratMouseClicked
+        registrarTratamientoMateriales(inputTratamiento.getText(), Double.valueOf(inputPrecioCunsis.getText()),Double.parseDouble(inputPrecioUnsis.getText()), Double.parseDouble(inputPrecioParticular.getText()), tblPtrat);
+    }//GEN-LAST:event_btnNewTratMouseClicked
 
+    private void inputPrecioParticularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPrecioParticularActionPerformed
+        
+    }//GEN-LAST:event_inputPrecioParticularActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        if(tratID!=-1){
+        actualizarTratamientoMateriales(tratID  , inputTratamiento.getText(), Double.valueOf(inputPrecioCunsis.getText()),Double.parseDouble(inputPrecioUnsis.getText()), Double.parseDouble(inputPrecioParticular.getText()), tblPtrat);
+        }else{
+            JOptionPane.showMessageDialog(this, "Seleccione una casilla");
+        }
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        mostrarTratamientos(tblTratamientos);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        if(tratID!=-1){
+            int confirmar = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar este tratamiento? Esta acción no se puede deshacer.","Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            if(confirmar==JOptionPane.YES_OPTION){
+                eliminarTratamiento(tratID);
+            } 
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecciona un usuario primero");
+        }
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    public void registrarTratamientoMateriales(String nombreTrat, double precio_unsis,double precio_comunsis,double precio_particular, JTable tblInsumos) {
+        String sqlTrat = "INSERT INTO tratamientos (nombre, precio_comunsis,precio_unsis,precio_particular) VALUES (?, ?, ?, ?)";
+        String sqlMat = "INSERT INTO material_tratamiento (id_tratamiento, id_producto, cantidad_gastada) VALUES (?, ?, ?)";
+
+        Cruds s = new Cruds();
+        try {
+            s.getCon();
+            PreparedStatement pstT = s.con.prepareStatement(sqlTrat, PreparedStatement.RETURN_GENERATED_KEYS);
+            pstT.setString(1, nombreTrat);
+            pstT.setDouble(2, precio_unsis);
+            pstT.setDouble(3, precio_comunsis);
+            pstT.setDouble(4, precio_particular);
+            pstT.executeUpdate();
+            ResultSet rs = pstT.getGeneratedKeys();
+            int idGenerado = 0;
+            if (rs.next()) {
+                idGenerado = rs.getInt(1);
+            }
+            PreparedStatement pstM = s.con.prepareStatement(sqlMat);
+            for (int i = 0; i < tblInsumos.getRowCount(); i++) {
+                boolean seleccionado = (boolean) tblInsumos.getValueAt(i, 3);
+
+                if (seleccionado) {
+                    String codigoProd = tblInsumos.getValueAt(i, 0).toString();
+                    int cant = Integer.parseInt(tblInsumos.getValueAt(i, 2).toString());
+
+                    pstM.setInt(1, idGenerado);
+                    pstM.setString(2, codigoProd);
+                    pstM.setInt(3, cant);
+                    pstM.addBatch();
+                }
+            }
+
+            pstM.executeBatch();
+            JOptionPane.showMessageDialog(this, "Tratamiento e insumos registrados.");
+            limpiar();
+        } catch (SQLException ex) {
+            try { s.con.rollback(); } catch (SQLException e) {}
+            System.out.println("Error: " + ex.getMessage());
+        }
+    }
+    public void actualizarTratamientoMateriales(int idTratamiento, String nombreTrat, double precio_unsis, double precio_comunsis, double precio_particular, JTable tblInsumos) {
+        String sqlUpdateTrat = "UPDATE tratamientos SET nombre=?, precio_unsis=?, precio_comunsis=?, precio_particular=? WHERE id_tratamiento=?";
+        String sqlDeleteMat = "DELETE FROM material_tratamiento WHERE id_tratamiento=?";
+        String sqlInsertMat = "INSERT INTO material_tratamiento (id_tratamiento, id_producto, cantidad_gastada) VALUES (?, ?, ?)";
+
+        Cruds s = new Cruds();
+        try {
+            s.getCon();
+            s.con.setAutoCommit(false);
+            PreparedStatement pstT = s.con.prepareStatement(sqlUpdateTrat);
+            pstT.setString(1, nombreTrat);
+            pstT.setDouble(2, precio_unsis);
+            pstT.setDouble(3, precio_comunsis);
+            pstT.setDouble(4, precio_particular);
+            pstT.setInt(5, idTratamiento);
+            pstT.executeUpdate();
+            PreparedStatement pstDel = s.con.prepareStatement(sqlDeleteMat);
+            pstDel.setInt(1, idTratamiento);
+            pstDel.executeUpdate();
+            PreparedStatement pstM = s.con.prepareStatement(sqlInsertMat);
+            for (int i = 0; i < tblInsumos.getRowCount(); i++) {
+                Object isSelected = tblInsumos.getValueAt(i, 3);
+                if (isSelected != null && (boolean) isSelected) {
+                    String codigoProd = tblInsumos.getValueAt(i, 0).toString();
+                    int cant = Integer.parseInt(tblInsumos.getValueAt(i, 2).toString());
+
+                    pstM.setInt(1, idTratamiento);
+                    pstM.setString(2, codigoProd);
+                    pstM.setInt(3, cant);
+                    pstM.addBatch();
+                }
+            }
+            pstM.executeBatch();
+
+            s.con.commit(); 
+            JOptionPane.showMessageDialog(null, "Registro actualizado correctamente.");
+            limpiar();
+        } catch (SQLException ex) {
+            try { if(s.con != null) s.con.rollback(); } catch (SQLException e) {}
+            JOptionPane.showMessageDialog(null, "Error al actualizar: " + ex.getMessage());
+        }
+    }
+    public void mostrarTratamientos(JTable tabla) {
+        String[] titulos = {"id", "Descripción del Tratamiento", "P. Comunsis", "P. Unsis", "P. Particular"};
+        DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+            public boolean isCellEditable(int row, int column) {
+                return false; // Evita que el usuario edite la tabla escribiendo sobre ella
+            }
+        };
+
+        String sql = "SELECT id_tratamiento, nombre, precio_comunsis, precio_unsis, precio_particular FROM tratamientos ORDER BY id_tratamiento ASC";
+        Cruds s = new Cruds();
+
+        try {
+            s.getCon();
+            PreparedStatement pst = s.con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            Object[] datos = new Object[5];
+
+            while (rs.next()) {
+                datos[0] = rs.getInt("id_tratamiento");
+                datos[1] = rs.getString("nombre");
+                datos[2] = rs.getDouble("precio_comunsis");
+                datos[3] = rs.getDouble("precio_unsis");
+                datos[4] = rs.getDouble("precio_particular");
+                modelo.addRow(datos);
+            }
+
+            tabla.setModel(modelo);
+            tabla.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(250); // El nombre suele ser más largo
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al cargar la lista: " + ex.getMessage());
+        }
+    }
+    private void Seleccionado() {
+    tblTratamientos.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+            if (!e.getValueIsAdjusting() && tblTratamientos.getSelectedRow() != -1) {
+                int selectedRow = tblTratamientos.getSelectedRow();
+                try {
+                    tratID=Integer.parseInt(tblTratamientos.getValueAt(selectedRow, 0).toString());
+                    inputTratamiento.setText(tblTratamientos.getValueAt(selectedRow, 1).toString());
+                    inputPrecioCunsis.setText(tblTratamientos.getValueAt(selectedRow, 2).toString());
+                    inputPrecioUnsis.setText(tblTratamientos.getValueAt(selectedRow, 3).toString());
+                    inputPrecioParticular.setText(tblTratamientos.getValueAt(selectedRow, 4).toString());
+                    
+                } catch (Exception ex) {
+                    System.err.println("Error al cargar datos en JTextFields: " + ex.getMessage());
+                }
+            }
+        }
+    });
+    }
+    public void eliminarTratamiento(int idTratamiento) {
+        String sqlMat = "DELETE FROM material_tratamiento WHERE id_tratamiento = ?";
+        String sqlTrat = "DELETE FROM tratamientos WHERE id_tratamiento = ?";
+
+        Cruds s = new Cruds();
+        try {
+            s.getCon();
+            PreparedStatement pstM = s.con.prepareStatement(sqlMat);
+            pstM.setInt(1, idTratamiento);
+            pstM.executeUpdate();
+            PreparedStatement pstT = s.con.prepareStatement(sqlTrat);
+            pstT.setInt(1, idTratamiento);
+            pstT.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Tratamiento eliminado correctamente.");
+            limpiar();
+        } catch (SQLException ex) {
+            try { if(s.con != null) s.con.rollback(); } catch (SQLException e) {}
+            JOptionPane.showMessageDialog(null, "Error al eliminar: " + ex.getMessage());
+        }
+    }
+    public void limpiar(){
+        inputTratamiento.setText("");
+        inputPrecioUnsis.setText("");
+        inputPrecioCunsis.setText("");
+        inputPrecioParticular.setText("");
+        l.mostrarTrat(tblPtrat);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField inpuIDTratamiento;
+    private javax.swing.JLabel btnNewTrat;
     private javax.swing.JTextField inputBuscarTratamiento;
-    private javax.swing.JTextField inputNombreTratamiento;
-    private javax.swing.JTextField inputPrecioTratamiento;
+    private javax.swing.JTextField inputPrecioCunsis;
+    private javax.swing.JTextField inputPrecioParticular;
+    private javax.swing.JTextField inputPrecioUnsis;
     private javax.swing.JTextField inputTratamiento;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblBuscarTratatxt;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPparticular;
+    private javax.swing.JLabel lblPunsi;
     private javax.swing.JLabel lbllogoProductos;
+    private javax.swing.JPanel pnlHeader;
+    private javax.swing.JTable tblPtrat;
     private javax.swing.JTable tblTratamientos;
     // End of variables declaration//GEN-END:variables
 }
