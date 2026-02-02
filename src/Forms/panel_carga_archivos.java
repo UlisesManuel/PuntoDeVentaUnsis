@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Forms;
+import java.sql.Connection;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 
 /**
  *
@@ -43,7 +48,7 @@ public class panel_carga_archivos extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
         jScrollBar1 = new javax.swing.JScrollBar();
-        jLabel1 = new javax.swing.JLabel();
+        Ticket = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(249, 249, 249));
 
@@ -74,7 +79,12 @@ public class panel_carga_archivos extends javax.swing.JPanel {
         btnDescargarDoc.setFont(new java.awt.Font("Cantarell", 1, 18)); // NOI18N
         btnDescargarDoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/factura.png"))); // NOI18N
         btnDescargarDoc.setText("Imprimir Ticket de la Venta");
-        btnDescargarDoc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDescargarDoc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnDescargarDoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDescargarDocMouseClicked(evt);
+            }
+        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,7 +142,12 @@ public class panel_carga_archivos extends javax.swing.JPanel {
         btnRegistro.setFont(new java.awt.Font("Cantarell", 1, 18)); // NOI18N
         btnRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/archivo-pdf.png"))); // NOI18N
         btnRegistro.setText("Descargar Registros");
-        btnRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistroMouseClicked(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/busca.png"))); // NOI18N
@@ -173,7 +188,7 @@ public class panel_carga_archivos extends javax.swing.JPanel {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(btnRegistro)
                 .addGap(75, 75, 75))
         );
@@ -185,7 +200,7 @@ public class panel_carga_archivos extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Ticket, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -194,7 +209,7 @@ public class panel_carga_archivos extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Ticket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -237,12 +252,128 @@ public class panel_carga_archivos extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void btnDescargarDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDescargarDocMouseClicked
+        // TODO add your handling code here:
+        String texto = jTextField1.getText().trim();
+
+    if (texto.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Ingresa el número de venta");
+        return;
+    }
+
+    try {
+        int noVenta = Integer.parseInt(texto);
+        cargarTicketEnLabel(noVenta);
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "El número de venta debe ser numérico");
+    }
+
+    }//GEN-LAST:event_btnDescargarDocMouseClicked
+
+    private void btnRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistroMouseClicked
+    
+    private void cargarTicketEnLabel(int noVenta) {
+
+    StringBuilder ticket = new StringBuilder();
+    ticket.append("<html>");
+    ticket.append("<b>CLÍNICA / PUNTO DE VENTA</b><br>");
+    ticket.append("Ticket No: ").append(noVenta).append("<br>");
+    ticket.append("--------------------------------<br>");
+
+    try {
+        Cruds db = new Cruds();
+        Connection con = db.getCon();
+
+        // 🔴 VALIDACIÓN CLAVE
+        if (con == null) {
+            Ticket.setText("<html><b>ERROR: SIN CONEXIÓN A LA BD</b></html>");
+            return;
+        }
+
+        // ===== VENTA =====
+        PreparedStatement psVenta = con.prepareStatement(
+            "SELECT fecha FROM ventas WHERE no_venta = ?"
+        );
+        psVenta.setInt(1, noVenta);
+        ResultSet rv = psVenta.executeQuery();
+
+        if (!rv.next()) {
+            Ticket.setText("<html><b>NO EXISTE LA VENTA</b></html>");
+            return;
+        }
+
+        ticket.append("Fecha: ")
+              .append(rv.getTimestamp("fecha"))
+              .append("<br><br>");
+
+        double total = 0;
+
+        // ===== PRODUCTOS =====
+        PreparedStatement psProd = con.prepareStatement(
+            "SELECT p.nombre, d.cantidad, d.precio_unitario " +
+            "FROM detalle_producto d " +
+            "JOIN productos p ON p.codigo = d.id_producto " +
+            "WHERE d.no_venta = ?"
+        );
+        psProd.setInt(1, noVenta);
+        ResultSet rp = psProd.executeQuery();
+
+        ticket.append("<b>PRODUCTOS</b><br>");
+
+        while (rp.next()) {
+            int cant = rp.getInt("cantidad");
+            double precio = rp.getDouble("precio_unitario");
+
+            ticket.append(rp.getString("nombre"))
+                  .append(" x").append(cant)
+                  .append(" $").append(precio)
+                  .append("<br>");
+
+            total += cant * precio;
+        }
+
+        // ===== SERVICIOS =====
+        PreparedStatement psServ = con.prepareStatement(
+            "SELECT t.nombre, d.precio_final_servicio " +
+            "FROM detalle_servicio d " +
+            "JOIN tratamientos t ON t.id_tratamiento = d.id_tratamiento " +
+            "WHERE d.no_venta = ?"
+        );
+        psServ.setInt(1, noVenta);
+        ResultSet rs = psServ.executeQuery();
+
+        ticket.append("<br><b>SERVICIOS</b><br>");
+
+        while (rs.next()) {
+            double precio = rs.getDouble("precio_final_servicio");
+
+            ticket.append(rs.getString("nombre"))
+                  .append(" $").append(precio)
+                  .append("<br>");
+
+            total += precio;
+        }
+
+        ticket.append("<br>--------------------------------<br>");
+        ticket.append("<b>TOTAL: $").append(total).append("</b>");
+        ticket.append("</html>");
+
+        Ticket.setText(ticket.toString());
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        Ticket.setText("<html><b>Error al cargar el ticket</b></html>");
+    }
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Ticket;
     private javax.swing.JLabel btnDescargarDoc;
     private javax.swing.JLabel btnRegistro;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
