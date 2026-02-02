@@ -285,14 +285,10 @@ public class panel_carga_archivos extends javax.swing.JPanel {
     try {
         Cruds db = new Cruds();
         Connection con = db.getCon();
-
-        // 🔴 VALIDACIÓN CLAVE
         if (con == null) {
             Ticket.setText("<html><b>ERROR: SIN CONEXIÓN A LA BD</b></html>");
             return;
         }
-
-        // ===== VENTA =====
         PreparedStatement psVenta = con.prepareStatement(
             "SELECT fecha FROM ventas WHERE no_venta = ?"
         );
@@ -309,14 +305,7 @@ public class panel_carga_archivos extends javax.swing.JPanel {
               .append("<br><br>");
 
         double total = 0;
-
-        // ===== PRODUCTOS =====
-        PreparedStatement psProd = con.prepareStatement(
-            "SELECT p.nombre, d.cantidad, d.precio_unitario " +
-            "FROM detalle_producto d " +
-            "JOIN productos p ON p.codigo = d.id_producto " +
-            "WHERE d.no_venta = ?"
-        );
+        PreparedStatement psProd = con.prepareStatement("SELECT p.nombre, d.cantidad, d.precio_unitario " +"FROM detalle_producto d " +"JOIN productos p ON p.codigo = d.id_producto " +"WHERE d.no_venta = ?");
         psProd.setInt(1, noVenta);
         ResultSet rp = psProd.executeQuery();
 
@@ -334,13 +323,7 @@ public class panel_carga_archivos extends javax.swing.JPanel {
             total += cant * precio;
         }
 
-        // ===== SERVICIOS =====
-        PreparedStatement psServ = con.prepareStatement(
-            "SELECT t.nombre, d.precio_final_servicio " +
-            "FROM detalle_servicio d " +
-            "JOIN tratamientos t ON t.id_tratamiento = d.id_tratamiento " +
-            "WHERE d.no_venta = ?"
-        );
+        PreparedStatement psServ = con.prepareStatement("SELECT t.nombre, d.precio_final_servicio " +"FROM detalle_servicio d " +"JOIN tratamientos t ON t.id_tratamiento = d.id_tratamiento " +"WHERE d.no_venta = ?");
         psServ.setInt(1, noVenta);
         ResultSet rs = psServ.executeQuery();
 

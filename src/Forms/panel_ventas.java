@@ -4,7 +4,6 @@
  */
 package Forms;
 
-import java.beans.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -232,6 +231,11 @@ public class panel_ventas extends javax.swing.JPanel {
         btnPnlCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/cerrar.png"))); // NOI18N
         btnPnlCancelar.setText("Cancelar Venta");
         btnPnlCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPnlCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPnlCancelarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlbtnCancelarVentaLayout = new javax.swing.GroupLayout(pnlbtnCancelarVenta);
         pnlbtnCancelarVenta.setLayout(pnlbtnCancelarVentaLayout);
@@ -303,7 +307,7 @@ public class panel_ventas extends javax.swing.JPanel {
                     .addComponent(inputClienteCobro)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblBuscarClientetxt)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 212, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -492,18 +496,22 @@ public class panel_ventas extends javax.swing.JPanel {
             int cant = Integer.parseInt(modelo.getValueAt(i, 2).toString());
             double precio = Double.parseDouble(modelo.getValueAt(i, 3).toString());
 
-            if (id.length() < 4) { 
-                int idTrat = Integer.parseInt(id);
-                registrarDetalleServicio(noVenta, idTrat, "MAT-PROVISIONAL", precio);
-            } else {
+            if (id.startsWith("00")) { 
                 registrarDetalleProducto(noVenta, id, cant, precio);
+            } else {
+                int idTrat = Integer.parseInt(id);
+                registrarDetalleServicio(noVenta, idTrat,"2020140001", precio);
             }
         }
-        JOptionPane.showMessageDialog(this, "¡Transacción # " + noVenta + " completada!");
+        JOptionPane.showMessageDialog(this, "¡Venta No" + noVenta + " completada!");
         limpiarTodo();
     }
 
     }//GEN-LAST:event_lblConfirmarVentaMousePressed
+
+    private void btnPnlCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPnlCancelarMouseClicked
+        limpiarTodo();
+    }//GEN-LAST:event_btnPnlCancelarMouseClicked
 
 
     private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {                                         
@@ -655,34 +663,23 @@ public class panel_ventas extends javax.swing.JPanel {
             PreparedStatement ps = s.con.prepareStatement(sql);
             ps.setInt(1, noVenta);
             ps.setInt(2, idTrat);
-            ps.setString(3, matricula); // Asegúrate de tener esta matrícula o pasar una por defecto
+            ps.setString(3, "2020140001");
             ps.setDouble(4, precio);
             ps.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Error en DetalleServicio: " + e.getMessage());
+           System.err.println("Error en DetalleServicio: " + e.getMessage());
         }
     }
         public void limpiarTodo() {
-        // Limpiar Carrito (Tabla)
         DefaultTableModel modelo = (DefaultTableModel) tblCarrito.getModel();
         modelo.setRowCount(0);
-
-        // Resetear Labels
         lbltotal.setText("$0.00");
         lblinputCambio.setText("$0.00");
-
-        // Limpiar Inputs
         inputRecibido.setText("");
         inputClienteCobro.setText("");
         inputBuscarTrat.setText("");
-
-        // Resetear variables de lógica
         idClienteSeleccionado = null;
-
-        // Deseleccionar RadioButtons
         Grupo.clearSelection();
-
-        System.out.println("Interfaz limpia y lista para nueva venta.");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup Grupo;
