@@ -241,7 +241,7 @@ public class panel_encargados extends javax.swing.JPanel {
     }
 
     if (password.length() < 8) {
-        JOptionPane.showMessageDialog(this, "Contraseña muy corta");
+        JOptionPane.showMessageDialog(this, "Contraseña muy corta. Minimo 8 caracteres");
         return;
     }
 
