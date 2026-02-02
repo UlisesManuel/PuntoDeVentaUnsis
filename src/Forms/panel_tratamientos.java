@@ -286,7 +286,7 @@ public class panel_tratamientos extends javax.swing.JPanel {
     private void inputPrecioParticularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPrecioParticularActionPerformed
         
     }//GEN-LAST:event_inputPrecioParticularActionPerformed
-
+    //Valida que se halla seleccionado una fila
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         if(tratID!=-1){
         actualizarTratamientoMateriales(tratID  , inputTratamiento.getText(), Double.valueOf(inputPrecioCunsis.getText()),Double.parseDouble(inputPrecioUnsis.getText()), Double.parseDouble(inputPrecioParticular.getText()), tblPtrat);
@@ -294,11 +294,11 @@ public class panel_tratamientos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Seleccione una casilla");
         }
     }//GEN-LAST:event_jLabel4MouseClicked
-
+    //llama a la funcion que hace la consulta
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         mostrarTratamientos(tblTratamientos);
     }//GEN-LAST:event_jLabel5MouseClicked
-
+    //Confirma que se borre un tratamiento
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         if(tratID!=-1){
             int confirmar = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar este tratamiento? Esta acción no se puede deshacer.","Confirmar eliminación", JOptionPane.YES_NO_OPTION);
@@ -309,7 +309,7 @@ public class panel_tratamientos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Selecciona un usuario primero");
         }
     }//GEN-LAST:event_jLabel3MouseClicked
-
+    //Insercion de un nuevo tratamiento
     public void registrarTratamientoMateriales(String nombreTrat, double precio_unsis,double precio_comunsis,double precio_particular, JTable tblInsumos) {
         String sqlTrat = "INSERT INTO tratamientos (nombre, precio_comunsis,precio_unsis,precio_particular) VALUES (?, ?, ?, ?)";
         String sqlMat = "INSERT INTO material_tratamiento (id_tratamiento, id_producto, cantidad_gastada) VALUES (?, ?, ?)";
@@ -351,6 +351,7 @@ public class panel_tratamientos extends javax.swing.JPanel {
             System.out.println("Error: " + ex.getMessage());
         }
     }
+    //Actualizacion de el tratamiento
     public void actualizarTratamientoMateriales(int idTratamiento, String nombreTrat, double precio_unsis, double precio_comunsis, double precio_particular, JTable tblInsumos) {
         String sqlUpdateTrat = "UPDATE tratamientos SET nombre=?, precio_unsis=?, precio_comunsis=?, precio_particular=? WHERE id_tratamiento=?";
         String sqlDeleteMat = "DELETE FROM material_tratamiento WHERE id_tratamiento=?";
@@ -393,6 +394,7 @@ public class panel_tratamientos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Error al actualizar: " + ex.getMessage());
         }
     }
+    //Funcion que hace la consutla de los tratameintos
     public void mostrarTratamientos(JTable tabla) {
         String[] titulos = {"id", "Descripción del Tratamiento", "P. Comunsis", "P. Unsis", "P. Particular"};
         DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
@@ -427,6 +429,7 @@ public class panel_tratamientos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Error al cargar la lista: " + ex.getMessage());
         }
     }
+    //Extrae los datos de la tabla
     private void Seleccionado() {
     tblTratamientos.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener() {
         public void valueChanged(javax.swing.event.ListSelectionEvent e) {
@@ -446,6 +449,7 @@ public class panel_tratamientos extends javax.swing.JPanel {
         }
     });
     }
+    //Borra un tratamiento
     public void eliminarTratamiento(int idTratamiento) {
         String sqlMat = "DELETE FROM material_tratamiento WHERE id_tratamiento = ?";
         String sqlTrat = "DELETE FROM tratamientos WHERE id_tratamiento = ?";
@@ -466,6 +470,7 @@ public class panel_tratamientos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Error al eliminar: " + ex.getMessage());
         }
     }
+    // limpia los campos al hacer una operacion
     public void limpiar(){
         inputTratamiento.setText("");
         inputPrecioUnsis.setText("");

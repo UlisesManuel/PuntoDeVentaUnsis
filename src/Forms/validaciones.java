@@ -17,17 +17,9 @@ public class validaciones {
             JOptionPane.showMessageDialog(null, "Rellenar todos los campos","Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        if(curp.getText().length()!=18 & tel.getText().length()!=9){
+        if(curp.getText().length()!=18 & tel.getText().length()!=10){
             JOptionPane.showMessageDialog(null, "CURP o Telefono no validos","Error", JOptionPane.ERROR_MESSAGE);
         return false;
-        }
-        if (!soloLetras(nombre.getText()) || !soloLetras(apellidop.getText()) || !soloLetras(apellidom.getText())){
-           JOptionPane.showMessageDialog(null, "Valores no validos","Error", JOptionPane.ERROR_MESSAGE);
-           return false; 
-        }
-        if(!soloNumeros(tel.getText())){
-            JOptionPane.showMessageDialog(null, "El telefono debe ser solo numeros","Error", JOptionPane.ERROR_MESSAGE);
-            return false;
         }
         return true;
     }
@@ -46,14 +38,6 @@ public class validaciones {
         if(correo.getText().length()!=18 & matricula.getText().length()!=10){
             JOptionPane.showMessageDialog(null, "Matricula no valida","Error", JOptionPane.ERROR_MESSAGE);
         return false;
-        }
-        if (!soloLetras(Nombre.getText()) || !soloLetras(Apellido.getText()) || !soloLetras(Apellido.getText())){
-           JOptionPane.showMessageDialog(null, "Valores no validos","Error", JOptionPane.ERROR_MESSAGE);
-           return false; 
-        }
-        if(!soloNumeros(matricula.getText())){
-            JOptionPane.showMessageDialog(null, "La matrícula debe ser solo numeros","Error", JOptionPane.ERROR_MESSAGE);
-            return false;
         }
         return true;
     }

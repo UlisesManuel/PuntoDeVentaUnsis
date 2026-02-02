@@ -299,16 +299,16 @@ public class panel_pacientes extends javax.swing.JPanel {
         Logic_Code logic=new Logic_Code();
         logic.habilitar(txtCURPpnlpas, txtNOMpnlpas, txtAPEPpnlpas, txtAPEMpnlpas, txtTELpnlpas);
     }//GEN-LAST:event_btnEdicionDPMousePressed
-
+    //Insercion a la base de datos 
     private void btnInsertarPasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInsertarPasMousePressed
         validaciones check=new validaciones();
-        if(check.campos(txtCURPpnlpas, txtNOMpnlpas, txtAPEMpnlpas, txtAPEMpnlpas, txtTELpnlpas)==true){
+        if(check.campos(txtCURPpnlpas, txtNOMpnlpas, txtAPEPpnlpas, txtAPEMpnlpas, txtTELpnlpas)==true){
            Logic_Code l=new Logic_Code();
         Cruds s=new Cruds();
         try{
             s.getCon();
             String values="('"+txtCURPpnlpas.getText()+"','"+txtNOMpnlpas.getText()+"','"+txtAPEPpnlpas.getText()+"','"+txtAPEMpnlpas.getText()+"','"+txtTELpnlpas.getText()+"');";
-            String sql="INSERT INTO clientes"+"(curp,nombres,apellido_paterno,apellido_materno,telefono) "+"VALUES "+values;
+            String sql="INSERT INTO clientes (curp,nombre,apellido_paterno,apellido_materno,telefono) "+"VALUES "+values;
             s.st.executeUpdate(sql);
             JOptionPane.showMessageDialog(this, "Dato agregado con exito");
             l.limpiarT(txtCURPpnlpas, txtNOMpnlpas, txtAPEPpnlpas, txtAPEMpnlpas, txtTELpnlpas);
@@ -321,15 +321,16 @@ public class panel_pacientes extends javax.swing.JPanel {
         
        
     }//GEN-LAST:event_btnInsertarPasMousePressed
-
+    //modificacion de tratamiento en la base de datos 
     private void btnmodificarPasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmodificarPasMousePressed
     validaciones check=new validaciones();
-    if(check.campos(txtCURPpnlpas, txtNOMpnlpas, txtAPEMpnlpas, txtAPEMpnlpas, txtTELpnlpas)==true){
-           Logic_Code l=new Logic_Code();
+    Logic_Code l=new Logic_Code();
+    if(check.campos(txtCURPpnlpas, txtNOMpnlpas, txtAPEPpnlpas, txtAPEMpnlpas, txtTELpnlpas)==true){
+           
         Cruds s=new Cruds();
         try{
             s.getCon();
-            String query="UPDATE clientes SET curp='"+ txtCURPpnlpas.getText()+ "',nombres = '"+txtNOMpnlpas.getText()+"',apellido_paterno= '"+txtAPEPpnlpas.getText()+"',apellido_materno= '"+txtAPEMpnlpas.getText()+"',telefono='"+txtTELpnlpas.getText()+"' WHERE curp='"+txtCURPpnlpas.getText()+"';";
+            String query="UPDATE clientes SET curp='"+ txtCURPpnlpas.getText()+ "',nombre = '"+txtNOMpnlpas.getText()+"',apellido_paterno= '"+txtAPEPpnlpas.getText()+"',apellido_materno= '"+txtAPEMpnlpas.getText()+"',telefono='"+txtTELpnlpas.getText()+"' WHERE curp='"+txtCURPpnlpas.getText()+"';";
             s.st.executeUpdate(query);
             JOptionPane.showMessageDialog(this, "Se actualizo el registro", "Exito", JOptionPane.INFORMATION_MESSAGE);
             l.limpiarT(txtCURPpnlpas, txtNOMpnlpas, txtAPEPpnlpas, txtAPEMpnlpas, txtTELpnlpas);
@@ -339,7 +340,7 @@ public class panel_pacientes extends javax.swing.JPanel {
         }
     }
     }//GEN-LAST:event_btnmodificarPasMousePressed
-//borron de datos
+    //borron de datos
     private void btnDropDatoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDropDatoMousePressed
         Logic_Code l=new Logic_Code();
         Cruds s=new Cruds();
@@ -362,9 +363,8 @@ public class panel_pacientes extends javax.swing.JPanel {
     }
     
     }//GEN-LAST:event_btnDropDatoMousePressed
-// accion de actualizar
+    // accion de actualizar
     private void btnActualizarPastblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarPastblMousePressed
-        System.out.println("Entre");
         Cruds s=new Cruds();
         try{
             s.getCon();
@@ -413,29 +413,26 @@ public class panel_pacientes extends javax.swing.JPanel {
     }
         return m;
 }
-/**
- * Configura un ListSelectionListener en la tabla de pacientes 
- * para cargar los datos de la fila seleccionada en los campos de texto.
- */
-private void Seleccionado() {
-    TblPacientes.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-        public void valueChanged(javax.swing.event.ListSelectionEvent e) {
-            if (!e.getValueIsAdjusting() && TblPacientes.getSelectedRow() != -1) {
-                int selectedRow = TblPacientes.getSelectedRow();
-                try {
-                    txtCURPpnlpas.setText(TblPacientes.getValueAt(selectedRow, 0).toString());
-                    txtNOMpnlpas.setText(TblPacientes.getValueAt(selectedRow, 1).toString());
-                    txtAPEPpnlpas.setText(TblPacientes.getValueAt(selectedRow, 2).toString());
-                    txtAPEMpnlpas.setText(TblPacientes.getValueAt(selectedRow, 3).toString());
-                    txtTELpnlpas.setText(TblPacientes.getValueAt(selectedRow, 4).toString());
-                    
-                } catch (Exception ex) {
-                    System.err.println("Error al cargar datos en JTextFields: " + ex.getMessage());
+    //Extrae los datos de la fila seleccionada
+    private void Seleccionado() {
+        TblPacientes.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting() && TblPacientes.getSelectedRow() != -1) {
+                    int selectedRow = TblPacientes.getSelectedRow();
+                    try {
+                        txtCURPpnlpas.setText(TblPacientes.getValueAt(selectedRow, 0).toString());
+                        txtNOMpnlpas.setText(TblPacientes.getValueAt(selectedRow, 1).toString());
+                        txtAPEPpnlpas.setText(TblPacientes.getValueAt(selectedRow, 2).toString());
+                        txtAPEMpnlpas.setText(TblPacientes.getValueAt(selectedRow, 3).toString());
+                        txtTELpnlpas.setText(TblPacientes.getValueAt(selectedRow, 4).toString());
+
+                    } catch (Exception ex) {
+                        System.err.println("Error al cargar datos en JTextFields: " + ex.getMessage());
+                    }
                 }
             }
-        }
-    });
-}
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TblPacientes;

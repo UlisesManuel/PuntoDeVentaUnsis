@@ -301,7 +301,7 @@ public class Logic_Code {
             System.out.println("Error SQL: " + ex.getMessage());
         }
     }
-
+    //Relleno de tabla para productos
     public DefaultTableModel tablitaProductos(ArrayList<Producto> listaProductos) {
         
     String[] columnas={"ID","Nombre","Cantidad","Seleccionar"};
@@ -328,6 +328,7 @@ public class Logic_Code {
         }
         return m;
     }
+    //Consulta a la base de datos de la tabla pacientes con un buscador dinamico
     public void buscarPacienteDinamico(String valor, JTable tbl) {
         Cruds s = new Cruds();
         String sql = "SELECT * FROM clientes WHERE nombre ILIKE ? OR curp ILIKE ?";
@@ -361,7 +362,7 @@ public class Logic_Code {
             System.out.println("Error en búsqueda dinámica: " + ex.getMessage());
         }
     }
-                                                   
+    //Funcion similar para el relleno de la tabla adaptada a pacientes                                       
     public DefaultTableModel tablitaPas(ArrayList<Pacientes> listaPacientes) {
         DefaultTableModel m = new DefaultTableModel();
 

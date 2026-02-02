@@ -254,14 +254,16 @@ public class panel_carga_archivos extends javax.swing.JPanel {
 
     private void btnDescargarDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDescargarDocMouseClicked
         // TODO add your handling code here:
+        //Caputura el numero de ticket
         String texto = jTextField1.getText().trim();
-
+        //valida que no se vacio
     if (texto.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Ingresa el número de venta");
         return;
     }
-
+    
     try {
+        
         int noVenta = Integer.parseInt(texto);
         cargarTicketEnLabel(noVenta);
     } catch (NumberFormatException e) {
@@ -273,7 +275,7 @@ public class panel_carga_archivos extends javax.swing.JPanel {
     private void btnRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistroMouseClicked
-    
+    //Funcion para dar dormato al ticket
     private void cargarTicketEnLabel(int noVenta) {
 
     StringBuilder ticket = new StringBuilder();

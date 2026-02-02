@@ -26,6 +26,7 @@ public class panel_ventas extends javax.swing.JPanel {
      * Creates new form panel_admin_clinicos
      */
     public panel_ventas() {
+        //Se llaman a funciones que consultan tratamientos, clientes y productos para que se muestren al entral a la aplicacion y no tener que esperar
         initComponents();
         lblEncargadotxt.setText("Nombre del Encargado:"+Sesion.getNoEmpleado());
         lc=new Logic_Code();
@@ -212,6 +213,11 @@ public class panel_ventas extends javax.swing.JPanel {
         btnPnlAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/cajero-automatico.png"))); // NOI18N
         btnPnlAbrir.setText("Abrir Caja");
         btnPnlAbrir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPnlAbrir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPnlAbrirMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlBtnAbrircajaLayout = new javax.swing.GroupLayout(pnlBtnAbrircaja);
         pnlBtnAbrircaja.setLayout(pnlBtnAbrircajaLayout);
@@ -422,7 +428,7 @@ public class panel_ventas extends javax.swing.JPanel {
     private void inputRecibidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputRecibidoActionPerformed
         
     }//GEN-LAST:event_inputRecibidoActionPerformed
-
+    //busca dinamica del cliente
     private void inputClienteCobroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteCobroKeyReleased
         lc=new Logic_Code();
         lc.buscarClientePV(inputClienteCobro.getText(), tblClienteBusqueda);
@@ -431,7 +437,7 @@ public class panel_ventas extends javax.swing.JPanel {
     private void RB_PrecionUnsisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RB_PrecionUnsisActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RB_PrecionUnsisActionPerformed
-
+    //Agrega los valores seleccionados de la tabla tratamiento a la tabla carrito
     private void tblTratamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTratamientoMouseClicked
     int fila = tblTratamiento.getSelectedRow();
     if (fila != -1) {
@@ -444,7 +450,7 @@ public class panel_ventas extends javax.swing.JPanel {
         actualizarTotal();
     }
     }//GEN-LAST:event_tblTratamientoMouseClicked
-
+    //Agrega los valores seleccionado de la tabla productos y los agrega al carrito 
     private void tblpoductoscobroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblpoductoscobroMouseClicked
     int fila = tblpoductoscobro.getSelectedRow();
         if (fila != -1 && tblpoductoscobro.getValueAt(fila, 0) != null) {
@@ -464,7 +470,7 @@ public class panel_ventas extends javax.swing.JPanel {
     private void inputRecibidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputRecibidoKeyPressed
 
     }//GEN-LAST:event_inputRecibidoKeyPressed
-
+    //Captura el dinero que recibio para determinar el cambio
     private void inputRecibidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputRecibidoKeyReleased
     try {
         String totalTexto = lbltotal.getText().replace("$", "").replace(",", "").trim();
@@ -484,7 +490,7 @@ public class panel_ventas extends javax.swing.JPanel {
         lblinputCambio.setText("0.00");
     }
     }//GEN-LAST:event_inputRecibidoKeyReleased
-
+    //Confirma la venta llamando a las funcines que insertan los detalles del producto y del servicio y a la venta en general en la base de datos
     private void lblConfirmarVentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConfirmarVentaMousePressed
     int noVenta = registrarVenta(idClienteSeleccionado, Sesion.getNoEmpleado(), true);
 
@@ -503,17 +509,22 @@ public class panel_ventas extends javax.swing.JPanel {
                 registrarDetalleServicio(noVenta, idTrat,"2020140001", precio);
             }
         }
-        JOptionPane.showMessageDialog(this, "¡Venta No" + noVenta + " completada!");
+        JOptionPane.showMessageDialog(this, "¡Venta completada! \n con NoVenta" + noVenta );
         limpiarTodo();
     }
 
     }//GEN-LAST:event_lblConfirmarVentaMousePressed
-
+    //cancela toda la compra
     private void btnPnlCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPnlCancelarMouseClicked
         limpiarTodo();
+        JOptionPane.showMessageDialog(this,"Venta cancelada");
     }//GEN-LAST:event_btnPnlCancelarMouseClicked
 
+    private void btnPnlAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPnlAbrirMouseClicked
+    JOptionPane.showMessageDialog(this, "Caja registradora abierta");
+    }//GEN-LAST:event_btnPnlAbrirMouseClicked
 
+    
     private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {                                         
         int fila = tblClienteBusqueda.getSelectedRow();
         if (fila != -1) {
@@ -523,9 +534,10 @@ public class panel_ventas extends javax.swing.JPanel {
             System.out.println("Cliente seleccionado: " + nombre + " con ID: " + idClienteSeleccionado);
         }
     }
+    //llena el carrito con los datos seleccionados en la tabla y llena el carrito
     public void agregarCarrito(JTable tblCarrito, String id, String nombre, int cant, double precio) {
         DefaultTableModel modelo = (DefaultTableModel) tblCarrito.getModel();
-
+        //revisa que si se duplic el producto o servicio no aparesca de nuevo sino que solo marque la cantidad seleccionada
     for (int i = 0; i < modelo.getRowCount(); i++) {
         Object valorCelda = modelo.getValueAt(i, 0);
             if (valorCelda != null && valorCelda.toString().equals(id)) {
@@ -536,12 +548,12 @@ public class panel_ventas extends javax.swing.JPanel {
             }
     }
 
-    // Si llegamos aquí, es nuevo
+    //si se llega aqui, es nuevo 
     Object[] fila = {id, nombre, cant, precio};
     modelo.addRow(fila);
     actualizarTotal();
     }
-    
+    //actualiza el total dinamicamente, se va actualizando cuando se va agregando un producto ak carrito
     public void actualizarTotal() {
         double total = 0;
         for (int i = 0; i < tblCarrito.getRowCount(); i++) {
@@ -553,13 +565,16 @@ public class panel_ventas extends javax.swing.JPanel {
         // Mostramos en el label grande
         lbltotal.setText("$" + String.format("%.2f", total));
     }
+    //Obtiene el precio del servicio dependiendo de la seleccion de comunidad unsis o precio unsis
     private double obtenerPrecioSegunServicio(String id) {
+    
     String columna = "";
     if (RB_PrecionUnsis.isSelected()){
         columna = "precio_unsis";
     }else if (RBP_Com_UNSIS.isSelected()){
         columna = "precio_comunsis";
     }else 
+        //si no se selecciona ninguno por defecto se le asigna el precio particular
         columna = "precio_particular";
     return cruds.obtenerPrecioDB(id, columna); 
     }
@@ -615,6 +630,7 @@ public class panel_ventas extends javax.swing.JPanel {
         }
         return m;
     }
+    //Restra la venta general
     public int registrarVenta(String curpCliente, String noEmpleado, boolean ticket) {
         
         String sql = "INSERT INTO ventas (curp_cliente, no_empleado, genera_ticket) VALUES (?, ?, ?)";
@@ -637,7 +653,7 @@ public class panel_ventas extends javax.swing.JPanel {
         return -1;
     }
 
-    // 2. Insertar Detalle de Producto
+    //Insertar Detalle de Producto
     public void registrarDetalleProducto(int noVenta, String idProd, int cant, double precio) {
         String sql = "INSERT INTO detalle_producto (no_venta, id_producto, cantidad, precio_unitario) VALUES (?, ?, ?, ?)";
         Cruds s = new Cruds();
@@ -654,7 +670,7 @@ public class panel_ventas extends javax.swing.JPanel {
         }
     }
 
-    // 3. Insertar Detalle de Servicio (Tratamientos)
+    //Insertar Detalle del tratamiento
     public void registrarDetalleServicio(int noVenta, int idTrat, String matricula, double precio) {
         String sql = "INSERT INTO detalle_servicio (no_venta, id_tratamiento, matricula_alumno, precio_final_servicio) VALUES (?, ?, ?, ?)";
         Cruds s = new Cruds();
@@ -670,7 +686,8 @@ public class panel_ventas extends javax.swing.JPanel {
            System.err.println("Error en DetalleServicio: " + e.getMessage());
         }
     }
-        public void limpiarTodo() {
+    //limpia los campos para una proxima compra
+    public void limpiarTodo() {
         DefaultTableModel modelo = (DefaultTableModel) tblCarrito.getModel();
         modelo.setRowCount(0);
         lbltotal.setText("$0.00");

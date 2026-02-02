@@ -274,7 +274,7 @@ public class panel_inventario extends javax.swing.JPanel {
     private void txtBuscarProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarProductActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarProductActionPerformed
-
+    //Inserta un nuevo producto en la base de datos 
     private void btnNewProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProductoMouseClicked
         Cruds s=new Cruds();
         PreparedStatement pst;
@@ -286,6 +286,7 @@ public class panel_inventario extends javax.swing.JPanel {
             pst.setString(2,inputNombreP.getText());
             pst.setInt(3,Integer.parseInt(inputCantidadP.getText()));
             pst.setDouble(4,Double.parseDouble(inputPrecioP.getText()));
+            pst.setString(5, null);
             
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this,"Producto agregado con exito");
@@ -295,7 +296,7 @@ public class panel_inventario extends javax.swing.JPanel {
             
         }
     }//GEN-LAST:event_btnNewProductoMouseClicked
-
+    //Borra producto de la base de datos
     private void btnBorrarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarProductoMouseClicked
         Cruds s=new Cruds();
         PreparedStatement pst;
@@ -321,7 +322,7 @@ public class panel_inventario extends javax.swing.JPanel {
             
         }
     }//GEN-LAST:event_btnBorrarProductoMouseClicked
-
+    //Modifica un producto
     private void btnModificarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarProductoMouseClicked
         Cruds s=new Cruds();
         PreparedStatement pst;
@@ -377,7 +378,7 @@ public class panel_inventario extends javax.swing.JPanel {
     private void txtBuscarProductKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarProductKeyReleased
         buscarPacienteDinamico(txtBuscarProduct.getText(), tblInventario);
     }//GEN-LAST:event_txtBuscarProductKeyReleased
-    
+    //Extrael los datos de la fila seleccionada de la tabla y lo pinta en los Textfiel
     private void Seleccionado() {
     tblInventario.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener() {
         public void valueChanged(javax.swing.event.ListSelectionEvent e) {
@@ -396,6 +397,7 @@ public class panel_inventario extends javax.swing.JPanel {
         }
     });
     }
+    //Consulta dinamica sobre productos
     public void buscarPacienteDinamico(String valor, JTable tbl) {
         Cruds s = new Cruds();
         String sql = "SELECT * FROM productos WHERE nombre ILIKE ? OR codigo ILIKE ?";

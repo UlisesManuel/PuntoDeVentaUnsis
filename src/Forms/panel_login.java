@@ -173,7 +173,7 @@ public class panel_login extends javax.swing.JPanel {
     private void txtuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtuserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtuserActionPerformed
-
+    //Estilo de placeHolder
     private void txtuserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtuserMousePressed
         if(txtuser.getText().equals("Ingrese el nombre de usuario")){
         txtuser.setText("");
@@ -184,7 +184,7 @@ public class panel_login extends javax.swing.JPanel {
         pswFiel.setForeground(Color.gray);
         }
     }//GEN-LAST:event_txtuserMousePressed
-
+    //Estilo de placeHolder
     private void pswFielMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pswFielMousePressed
        if(String.valueOf(pswFiel.getPassword()).startsWith("************")){
            pswFiel.setText("");
@@ -209,7 +209,7 @@ public class panel_login extends javax.swing.JPanel {
     private void pnlbtninisiarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pnlbtninisiarFocusGained
 
     }//GEN-LAST:event_pnlbtninisiarFocusGained
-
+    //Valida la contraseña y usuario
     private void lblinisiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblinisiarMousePressed
         
         
