@@ -9,7 +9,7 @@ package Forms;
  * @author J0s3C
  */
 public class Alumnos {
-   
+     //Declaramos los atributos de el objeto tipo alumno
      String nombre;
      String apellido;
      String correo;
@@ -23,7 +23,7 @@ public class Alumnos {
         this.matricula = matricula;
        
     }
-
+    //Insertamos getters y setter
     public String getNombre(){ return nombre; }
     public String getApellido(){ return apellido; }
     public String getCorreo(){ return correo; }

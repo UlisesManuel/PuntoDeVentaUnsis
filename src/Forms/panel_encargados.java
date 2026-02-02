@@ -209,11 +209,10 @@ public class panel_encargados extends javax.swing.JPanel {
                 .addContainerGap(58, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    //Inserta Nuevo encargado
     private void btnNuevoEncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoEncActionPerformed
-        String sql = "INSERT INTO encargados "
-        + "(no_empleado, nombre, apellido_paterno, apellido_materno, usuario, password_hash) "
-        + "VALUES (?, ?, ?, ?, ?, crypt(?, gen_salt('bf')))";
+       //Instruccion SQL 
+        String sql = "INSERT INTO encargados "+ "(no_empleado, nombre, apellido_paterno, apellido_materno, usuario, password_hash) "+ "VALUES (?, ?, ?, ?, ?, crypt(?, gen_salt('bf')))";
 
     Cruds s = new Cruds();
     PreparedStatement pst;
@@ -243,25 +242,22 @@ public class panel_encargados extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_btnNuevoEncActionPerformed
-
+    //Hace la consulta y las muestra en la tabla
     private void btnMostrarEncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarEncActionPerformed
 
         Logic_Code.mostrarEncargados(tblEncargados);
     }//GEN-LAST:event_btnMostrarEncActionPerformed
-
+    //Boton de borrar un registro
     private void btnBorrarEnc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarEnc1ActionPerformed
-
+       //Valida que el NoEmpleado no este vacio
        if (jtxtNoEmpleado.getText().isEmpty()) {
         JOptionPane.showMessageDialog(this, "Selecciona un encargado", "Aviso", JOptionPane.WARNING_MESSAGE);
         return;
-    }
-
+        }
+       //COnfirma el borrado del encargado
     int confirm = JOptionPane.showConfirmDialog(
         this,
-        "Este encargado se borrará permanentemente.\n¿Deseas continuar?",
-        "Advertencia",
-        JOptionPane.YES_NO_OPTION,
-        JOptionPane.WARNING_MESSAGE
+        "Este encargado se borrará permanentemente.\n¿Deseas continuar?","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE
     );
 
     if (confirm == JOptionPane.YES_OPTION) {
@@ -289,7 +285,7 @@ public class panel_encargados extends javax.swing.JPanel {
 
    
     }//GEN-LAST:event_btnBorrarEnc1ActionPerformed
-
+    //Selecciona una fila de la tabla para plasmarla en los textfiel
     private void SeleccionadoEncargados() {
     tblEncargados.getSelectionModel().addListSelectionListener(e -> {
         if (!e.getValueIsAdjusting() && tblEncargados.getSelectedRow() != -1) {
@@ -307,7 +303,7 @@ public class panel_encargados extends javax.swing.JPanel {
         }
     });
 }
-
+    //limpia los campos al hacer una operacion
     private void limpiarCamposEncargados() {
     jtxtNoEmpleado.setText("");
     jtxtNombre.setText("");

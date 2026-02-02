@@ -9,6 +9,7 @@ package Forms;
  * @author J0s3C
  */
 public class Encargados {
+    //Se declara los atributos de la clase encargados
     private String noEmpleado;
     private String nombre;
     private String apellidos;

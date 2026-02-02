@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
  * @author david
  */
 public class Logic_Code {
-    
+    //Ajusta medidas de los labesl de la barra latera
     public static void ajustarMedidas(JLabel... labelsito){
         for (JLabel n: labelsito){
             if (n.getText().equals(MainP.lbl_icono_logo.getText())){
@@ -51,7 +51,7 @@ public class Logic_Code {
         }
         
     }
-    
+        //Limpia los textfield 
      public void limpiarT(JTextField matricula,JTextField tblname,JTextField nom,JTextField ape,JTextField car){
         matricula.setText("");
         tblname.setText("");
@@ -59,14 +59,14 @@ public class Logic_Code {
         ape.setText("");
         car.setText("");
     }
-     
+        //Limpia los textfield se sobreescribe el codigo ya que se necesita para paneles con jtextfiel menores
        public void limpiar2(JTextField matricula,JTextField Nombre,JTextField Apellido,JTextField correo){
         Nombre.setText("");
         Apellido.setText("");
         correo.setText("");
         matricula.setText("");
     }
-     
+     //Deshabilita la edicion de los Jtextfiel
     public void deshabilitar(JTextField curp,JTextField nombre,JTextField apellidop,JTextField apellidom,JTextField tel){
         curp.setEnabled(false);
         nombre.setEnabled(false);
@@ -74,6 +74,7 @@ public class Logic_Code {
         apellidom.setEnabled(false);
         tel.setEnabled(false);
     }
+     //Habilita la edicion de los Jtextfiel
     public void habilitar(JTextField curp,JTextField nombre,JTextField apellidop,JTextField apellidom,JTextField tel){
         curp.setEnabled(true);
         nombre.setEnabled(true);
@@ -82,13 +83,11 @@ public class Logic_Code {
         tel.setEnabled(true);
     }
     
-    
+    //Los siguientes metedos funcionan exclusivamente para diseño e iterfaz 
     public static void resaltarLabel(JLabel labelsito){
        labelsito.setForeground(new Color(25,31,86));
        labelsito.setBackground(Color.WHITE);
     }
-    
-    
     public static void restaurarLabel(JLabel labelsito){
         labelsito.setForeground(Color.WHITE);
         labelsito.setBackground(new Color(25,31,86));
@@ -123,7 +122,7 @@ public class Logic_Code {
     }
     }
 
- 
+    //moldea la tabla y inserta los datos de esta
     public static DefaultTableModel tablita(ArrayList<Alumnos> lista){
     DefaultTableModel m = new DefaultTableModel();
 
@@ -144,7 +143,7 @@ public class Logic_Code {
     }
 
     return m;
-}
+}   //Muestra los datos en la tabla
     public static void mostrarEncargados(javax.swing.JTable tabla){
     Cruds s = new Cruds();
 
@@ -176,7 +175,7 @@ public class Logic_Code {
         System.out.println(ex.getMessage());
     }
 }
-
+    //Llenado de la tabla Encargados
     public static DefaultTableModel tblEncargados(ArrayList<Encargados> lista){
     DefaultTableModel m = new DefaultTableModel();
 
@@ -196,6 +195,7 @@ public class Logic_Code {
 
     return m;
     }
+    //busqueda dinamica para los tratamiento
     public void buscarTratamiento(String valor, JTable tabla) {
         String[] columnas = {"ID_Producto", "Nombre", "Precio", "Agregar"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
@@ -226,6 +226,7 @@ public class Logic_Code {
             System.err.println("Error al filtrar: " + e.getMessage());
         }
     }
+    //busca dinamica para los clientes en la iterfaz del punto de cobro
     public void buscarClientePV(String valor, JTable tabla) {
         Cruds s = new Cruds();
         String sql = "SELECT nombre FROM clientes WHERE nombre LIKE ?";
@@ -258,7 +259,8 @@ public class Logic_Code {
         m.addColumn("curp");
         m.addColumn("Nombre");
 
-        for(Pacientes a : listaPacientes){
+        for    
+(Pacientes a : listaPacientes){
             Object[] fila = new Object[2];
             fila[0] = a.getCurp();
             fila[1] = a.getNombre();
@@ -267,6 +269,7 @@ public class Logic_Code {
 
         return m;
     }
+    //Muestra los tratamientos en la interfas del punto de cobro 
     public void mostrarTrat(JTable tbl) {
         String sql = "SELECT codigo, nombre FROM productos;";
         Cruds s = new Cruds();

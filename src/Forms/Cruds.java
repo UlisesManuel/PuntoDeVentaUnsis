@@ -16,6 +16,7 @@ import java.sql.SQLException;
  * @author manugr
  */
 public class Cruds {
+    //Declaramos los String que permitiran formar la conexion a la base de datos
     private static final String url = "jdbc:postgresql://yamanote.proxy.rlwy.net:30234/railway";
     private static final String usuario = "postgres";
     private static final String contra = "HmIlNCoyeXqHNsPMoHpcQurTIDbriFSU";
@@ -34,13 +35,16 @@ public class Cruds {
     public Connection con;
     public Cruds(){
         try{
+            //Conecta nuestro proyecto a la base de datos
             con=DriverManager.getConnection(url, usuario, contra);
             //con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/puntov", "ulises", "manuel300805");
             st=con.createStatement();
+            //evita que la aplicacion colapse en caso de errores
         }catch(Exception ex){
         System.out.println(ex.getMessage());
     }
     }
+    //Optiene el precio de la base de daros de los tratamientos
     public double obtenerPrecioDB(String id, String columnaPrecio) {
         double precio = 0;
         String sql = "SELECT " + columnaPrecio + " FROM tratamientos WHERE id_tratamiento = ?";
