@@ -211,33 +211,66 @@ public class panel_encargados extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     //Inserta Nuevo encargado
     private void btnNuevoEncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoEncActionPerformed
-       //Instruccion SQL 
-        String sql = "INSERT INTO encargados "+ "(no_empleado, nombre, apellido_paterno, apellido_materno, usuario, password_hash) "+ "VALUES (?, ?, ?, ?, ?, crypt(?, gen_salt('bf')))";
+       String noEmpleado = jtxtNoEmpleado.getText().trim();
+    String nombre = jtxtNombre.getText().trim();
+    String apP = jtxtApellidoPEnc.getText().trim();
+    String apM = jtxtApellidoMEnc.getText().trim();
+    String usuario = jtxtUsuarioEnc.getText().trim();
+    String password = String.valueOf(jPasswordField1.getPassword());
 
-    Cruds s = new Cruds();
-    PreparedStatement pst;
+    // VALIDACIONES
+    if (noEmpleado.isEmpty() || nombre.isEmpty() || apP.isEmpty()
+            || usuario.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Campos obligatorios vacíos");
+        return;
+    }
+
+    if (!noEmpleado.matches("[A-Za-z0-9]{4,11}")) {
+        JOptionPane.showMessageDialog(this, "No. empleado inválido");
+        return;
+    }
+
+    if (!nombre.matches("[A-Za-zÁÉÍÓÚáéíóúÑñ ]+")) {
+        JOptionPane.showMessageDialog(this, "Nombre inválido");
+        return;
+    }
+
+    if (!usuario.matches("[a-zA-Z0-9_]{4,30}")) {
+        JOptionPane.showMessageDialog(this, "Usuario inválido");
+        return;
+    }
+
+    if (password.length() < 8) {
+        JOptionPane.showMessageDialog(this, "Contraseña muy corta");
+        return;
+    }
+
+    String sql = "INSERT INTO encargados " +
+                 "(no_empleado, nombre, apellido_paterno, apellido_materno, usuario, password_hash) " +
+                 "VALUES (?, ?, ?, ?, ?, crypt(?, gen_salt('bf')))";
 
     try {
+        Cruds s = new Cruds();
         s.getCon();
-        pst = s.con.prepareStatement(sql);
 
-        pst.setString(1, jtxtNoEmpleado.getText());
-        pst.setString(2, jtxtNombre.getText());
-        pst.setString(3, jtxtApellidoPEnc.getText());
-        pst.setString(4, jtxtApellidoMEnc.getText());
-        pst.setString(5, jtxtUsuarioEnc.getText());
-        pst.setString(6, String.valueOf(jPasswordField1.getPassword()));
+        PreparedStatement pst = s.con.prepareStatement(sql);
+        pst.setString(1, noEmpleado);
+        pst.setString(2, nombre);
+        pst.setString(3, apP);
+        pst.setString(4, apM);
+        pst.setString(5, usuario);
+        pst.setString(6, password);
 
-        pst.executeUpdate(); 
+        pst.executeUpdate();
 
         JOptionPane.showMessageDialog(this, "Encargado agregado con éxito");
-        
         limpiarCamposEncargados();
-        
-        tblEncargados.clearSelection();
+
     } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
-        JOptionPane.showMessageDialog(this, "Error al insertar encargado", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this,
+            "Error: el usuario o número de empleado ya existe",
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
     }
         
         

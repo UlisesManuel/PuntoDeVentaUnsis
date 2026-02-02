@@ -51,9 +51,8 @@ public class panel_carga_alumnos extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         agregar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+        Modificar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -165,14 +164,17 @@ public class panel_carga_alumnos extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Ver detalles");
-
-        jButton3.setText("Modificar registro");
-
-        jButton4.setText("Restablecer contraseña");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                EliminarActionPerformed(evt);
+            }
+        });
+
+        Modificar.setText("Modificar registro");
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarActionPerformed(evt);
             }
         });
 
@@ -191,7 +193,7 @@ public class panel_carga_alumnos extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -220,12 +222,9 @@ public class panel_carga_alumnos extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 894, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -247,12 +246,9 @@ public class panel_carga_alumnos extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                        .addComponent(Modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -279,71 +275,170 @@ public class panel_carga_alumnos extends javax.swing.JPanel {
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         // TODO add your handling code here:
-        this.jDialog1.setVisible(true);
+         Logic_Code l = new Logic_Code();
+    l.limpiar2(Nombre, Apellido, correo, matricula);
+    matricula.setEnabled(true);
+    jDialog1.setVisible(true);
     }//GEN-LAST:event_agregarActionPerformed
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
 
-         validaciones check=new validaciones();
-         Logic_Code l=new Logic_Code();
-        if(check.campos2(Nombre, Apellido, correo, matricula)==true){
-//           Logic_Code l=new Logic_Code();
-        Cruds s=new Cruds();
-        try{
-            s.getCon();
-            String values="('"+Nombre.getText()+"','"+Apellido.getText()+"','"+correo.getText()+"','"+matricula.getText()+"')";
-            String sql="INSERT INTO alumnos"+"(nombre,apellido,correo,matricula) "+"VALUES "+values;
-            s.st.executeUpdate(sql);
-            JOptionPane.showMessageDialog(this, "Dato agregado con exito");
-            l.limpiar2(Nombre, Apellido, correo, matricula);
-        } catch(SQLException ex){
-           System.out.println(ex.getMessage());
-           JOptionPane.showMessageDialog(this, "Tabla no encontrada","Error", JOptionPane.ERROR_MESSAGE);
-    }                                         
+         validaciones check = new validaciones();
+    Logic_Code l = new Logic_Code();
 
-                                               
-        }  
-         Logic_Code.mostrar(alumnos);
+    if (!check.campos2(Nombre, Apellido, correo, matricula)) {
+        return;
+    }
+
+    Cruds s = new Cruds();
+
+    try {
+        s.getCon();
+
+        // SI ES MODIFICAR
+        if (!matricula.isEnabled()) {
+
+            String sql = "UPDATE alumnos SET nombre=?, apellido=?, correo=? WHERE matricula=?";
+            var pst = s.con.prepareStatement(sql);
+
+            pst.setString(1, Nombre.getText());
+            pst.setString(2, Apellido.getText());
+            pst.setString(3, correo.getText());
+            pst.setString(4, matricula.getText());
+
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(this, "Alumno modificado con éxito");
+
+            matricula.setEnabled(true); // volver a habilitar
+        } 
+        // SI ES NUEVO
+        else {
+            String sql = "INSERT INTO alumnos (nombre, apellido, correo, matricula) VALUES (?, ?, ?, ?)";
+            var pst = s.con.prepareStatement(sql);
+
+            pst.setString(1, Nombre.getText());
+            pst.setString(2, Apellido.getText());
+            pst.setString(3, correo.getText());
+            pst.setString(4, matricula.getText());
+
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(this, "Alumno agregado con éxito");
+        }
+
+        l.limpiar2(Nombre, Apellido, correo, matricula);
+        jDialog1.setVisible(false);
+        Logic_Code.mostrar(alumnos);
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this,
+            "Error al guardar datos",
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_GuardarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        int fila = alumnos.getSelectedRow();
+
+    if (fila == -1) {
+        JOptionPane.showMessageDialog(this,
+            "Selecciona un alumno para modificar",
+            "Aviso",
+            JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // Extraer datos del JTable
+    Nombre.setText(alumnos.getValueAt(fila, 0).toString());
+    Apellido.setText(alumnos.getValueAt(fila, 1).toString());
+    correo.setText(alumnos.getValueAt(fila, 2).toString());
+    matricula.setText(alumnos.getValueAt(fila, 3).toString());
+
+    // IMPORTANTE: la matrícula no debe cambiarse
+    matricula.setEnabled(false);
+
+    // Abrir el diálogo
+    jDialog1.setVisible(true);
+    }//GEN-LAST:event_ModificarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        // TODO add your handling code here:
+        int fila = alumnos.getSelectedRow();
+
+    if (fila == -1) {
+        JOptionPane.showMessageDialog(this,
+            "Selecciona un alumno para eliminar",
+            "Aviso",
+            JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // Extraer matrícula (llave primaria)
+    String matriculaEliminar = alumnos.getValueAt(fila, 3).toString();
+
+    // Confirmación antes de borrar
+    int confirm = JOptionPane.showConfirmDialog(this,
+        "¿Seguro que deseas eliminar al alumno con matrícula " + matriculaEliminar + "?",
+        "Confirmar eliminación",
+        JOptionPane.YES_NO_OPTION);
+
+    if (confirm != JOptionPane.YES_OPTION) {
+        return; // usuario canceló
+    }
+
+    // Conexión y eliminación
+    try {
+        Cruds s = new Cruds();
+        s.getCon();
+
+        String sql = "DELETE FROM alumnos WHERE matricula=?";
+        var pst = s.con.prepareStatement(sql);
+        pst.setString(1, matriculaEliminar);
+
+        int rows = pst.executeUpdate();
+
+        if (rows > 0) {
+            JOptionPane.showMessageDialog(this, "Alumno eliminado con éxito");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró el alumno", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        // Refrescar tabla
+        Logic_Code.mostrar(alumnos);
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this,
+            "Error al eliminar el alumno",
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
+        System.out.println(ex.getMessage());
+    }
+    }//GEN-LAST:event_EliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Apellido;
+    private javax.swing.JButton Eliminar;
     private javax.swing.JButton Guardar;
+    private javax.swing.JButton Modificar;
     private javax.swing.JTextField Nombre;
     private javax.swing.JButton agregar;
     private javax.swing.JTable alumnos;
     private javax.swing.JTextField correo;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel lbllogoProductos;
-    private javax.swing.JLabel lbllogoProductos1;
-    private javax.swing.JLabel lbllogoProductos2;
-    private javax.swing.JLabel lbllogoProductos3;
     private javax.swing.JTextField matricula;
-    private javax.swing.JPanel pnlHeader;
-    private javax.swing.JPanel pnlHeader1;
-    private javax.swing.JPanel pnlHeader2;
-    private javax.swing.JPanel pnlHeader3;
     // End of variables declaration//GEN-END:variables
 }
